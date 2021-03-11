@@ -1,7 +1,36 @@
+@media (min-width: 1200px) {
+  .AboutImageContainer img {
+    min-height: 30rem;
+    width: 32rem;
+  }
+}
+
 .AboutImageContainer img {
-  min-height: 30rem;
-  max-width: 32rem;
+  min-height: 14rem;
+  width: 100%;
+  overflow: hidden;
+}
+@media (min-width: 992px) {
+  .AboutImageContainer img {
+    min-height: 30rem;
+    width: 28rem;
+    overflow: hidden;
+  }
+}
+@media (max-width: 575.98px) {
+  .AboutImageContainer img {
+    height: 14rem;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+@media (max-width: 912.98px) {
+  .AboutImageContainer img {
+    height: 24rem;
+    width: 22rem;
+  }
 }
 .AboutContentContainer {
   color: var(--background-color-light);
+  margin-top: 2.5rem;
 }

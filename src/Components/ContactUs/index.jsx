@@ -2,7 +2,7 @@ import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import styles from "./contactUs.module.css";
 const ContactUs = () => {
   return (
-    <Container>
+    <Container id="contact">
       <Row className="my-5">
         <Col
           md={{ span: 5 }}
@@ -61,13 +61,8 @@ const ContactUs = () => {
                 <Form.Control />
               </Form.Group>
             </Form.Row>
-
-            <Form.Group id="formGridCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-
             <Button
-              className={styles.From_Button}
+              className={styles.Form_Button}
               size="lg"
               block
               type="submit"

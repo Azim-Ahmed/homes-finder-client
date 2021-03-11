@@ -2,9 +2,8 @@
   background: url("https://i.ibb.co/JzcY3Bm/house1.jpg");
 
   /* Full height */
-  min-height: 900px;
-  min-width: 100%;
-
+  min-height: 700px;
+  width: 100%;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;

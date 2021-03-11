@@ -1,11 +1,11 @@
-.From_Button {
+.Form_Button {
   background: var(--background-color-light);
   color: black;
   font-weight: 300;
   border: none;
   border-radius: 0px 0px;
 }
-.From_Button:hover {
+.Form_Button:hover {
   background-color: #dfd2d2;
   color: rgb(255, 253, 253);
 }
