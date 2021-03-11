@@ -1,0 +1,53 @@
+const FakeData = [
+  {
+    name: "kitchen Renovations",
+    time: "1h",
+    ServiceURL: "https://i.ibb.co/LxWzG67/house-9.jpg",
+    id: "1",
+    description: "",
+  },
+  {
+    name: "Living Room Renovations",
+    time: "1h",
+    ServiceURL: "https://i.ibb.co/C7KZtw7/house-2.jpg",
+    id: "2",
+    description: "",
+  },
+  {
+    name: "Bathroom Renovations",
+    time: "1h",
+    ServiceURL: "https://i.ibb.co/82hH0sK/house-3.jpg",
+    id: "3",
+    description: "",
+  },
+  {
+    name: "Attic Insulation",
+    time: "1h",
+    ServiceURL: "https://i.ibb.co/Qmjt2h4/house-4.jpg",
+    id: "4",
+    description: "",
+  },
+  {
+    name: "Wine  Cellers",
+    time: "1h",
+    ServiceURL: "https://i.ibb.co/fkQPtN0/house-5.jpg",
+    id: "5",
+    description: "",
+  },
+  {
+    name: "Other Services",
+    time: "1h",
+    ServiceURL: "https://i.ibb.co/hC6kpMm/house-6.jpg",
+    id: "6",
+    description: "",
+  },
+  // (house2: ""),
+  // (house3: ""),
+  // (house4: ""),
+  // (house5: ""),
+  // (house6: ""),
+  // (house7: "https://i.ibb.co/8swKLyJ/house-7.jpg"),
+  // (house8: "https://i.ibb.co/FDtTyNF/house-8.jpg"),
+  // (house9: "https://i.ibb.co/LxWzG67/house-9.jpg"),
+];
+export default FakeData;

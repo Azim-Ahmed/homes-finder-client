@@ -1,0 +1,7 @@
+.AboutImageContainer img {
+  min-height: 30rem;
+  max-width: 32rem;
+}
+.AboutContentContainer {
+  color: var(--background-color-light);
+}
