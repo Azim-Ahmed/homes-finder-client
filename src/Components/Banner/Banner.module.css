@@ -1,8 +1,8 @@
 .parallax {
-  background: url("https://i.ibb.co/JzcY3Bm/house1.jpg");
+  background: url('https://i.ibb.co/JzcY3Bm/house1.jpg');
 
   /* Full height */
-  min-height: 700px;
+  min-height: 750px;
   width: 100%;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;

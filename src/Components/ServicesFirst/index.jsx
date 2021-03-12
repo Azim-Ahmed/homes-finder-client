@@ -1,8 +1,8 @@
-import { Card, Col, Container, Row } from "react-bootstrap";
-import FakeData from "../practiceData";
-import styles from "./ServiceFirst.module.css";
+import { Card, Col, Container, Row } from 'react-bootstrap';
+import FakeData from '../practiceData';
+import styles from './ServiceFirst.module.css';
 
-const ServicesFirst = () => {
+export default function ServicesFirst({ service }) {
   return (
     <Container id="Services">
       <Row>
@@ -37,6 +37,4 @@ const ServicesFirst = () => {
       </Row>
     </Container>
   );
-};
-
-export default ServicesFirst;
+}

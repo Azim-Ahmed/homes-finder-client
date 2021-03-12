@@ -1,4 +1,4 @@
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
   .AboutImageContainer img {
     min-height: 30rem;
     width: 32rem;
@@ -20,7 +20,7 @@
 @media (max-width: 575.98px) {
   .AboutImageContainer img {
     height: 14rem;
-    width: 100%;
+    width: 16rem;
     overflow: hidden;
   }
 }
@@ -29,7 +29,21 @@
     height: 24rem;
     width: 22rem;
   }
+} */
+
+.AboutImageContainer {
+  width: 100%;
+  height: auto;
+  max-width: 460px;
 }
+
+@media (min-width: 676px) {
+  .AboutImageContainer {
+    min-height: 30rem;
+    width: 28rem;
+  }
+}
+
 .AboutContentContainer {
   color: var(--background-color-light);
   margin-top: 2.5rem;

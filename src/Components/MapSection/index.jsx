@@ -1,7 +1,7 @@
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 const containerStyle = {
-  width: "100%",
-  minHeight: "670px",
+  width: '100%',
+  minHeight: '500px',
 };
 const location = {
   lat: 23.733348,
@@ -9,15 +9,14 @@ const location = {
 };
 
 const onLoad = (marker) => {
-  console.log("marker: ", marker);
+  console.log('marker: ', marker);
 };
 
 function MapSection() {
   return (
-    <div style={{ height: "400px" }}>
+    <div>
       <LoadScript googleMapsApiKey="AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ">
         <GoogleMap
-          style={{ minHeight: "19rem" }}
           mapContainerStyle={containerStyle}
           center={location}
           zoom={16}

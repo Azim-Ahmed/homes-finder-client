@@ -1,11 +1,11 @@
-import styles from "./AboutUs.module.css";
-import { Container, Row, Col } from "react-bootstrap";
+import styles from './AboutUs.module.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const AboutUs = () => {
   return (
     <Container id="about">
-      <Row className="my-5 py-5">
-        <Col className="my-5 py-5" sm={12} xs={12} md={{ span: 5, offset: 1 }}>
+      <Row className="my-5 py-5 text-center">
+        <Col className="my-5 py-5" sm={12} xs={12} md={6}>
           <h1>About Our Company</h1>
           <p className={styles.AboutContentContainer}>
             Our company is a specialist in home design and total home
@@ -17,14 +17,10 @@ const AboutUs = () => {
             to ensure your satisfaction.
           </p>
         </Col>
-        <Col
-          className={styles.AboutImageContainer}
-          sm={12}
-          xs={12}
-          md={{ span: 4 }}
-        >
+        <Col sm={12} xs={12} md={6}>
           <div>
             <img
+              className={styles.AboutImageContainer}
               src="https://i.ibb.co/ThcJFdG/Getty-Images-1131001476.jpg"
               alt="About us profile"
             />
