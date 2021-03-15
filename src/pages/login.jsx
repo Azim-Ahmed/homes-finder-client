@@ -7,6 +7,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from '../firebase.config';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const Login = () => {
   const { appData, setAppData } = useContext(UserContext);
@@ -30,8 +31,10 @@ const Login = () => {
       .then(function (result) {
         const { displayName, email } = result.user;
         const loggedInUser = { name: displayName, email };
+        localStorage.setItem('data', loggedInUser);
         setAppData(loggedInUser);
-        window.store = loggedInUser;
+        //localStorage.setItem('data', loggedInUser);
+        // window.store = loggedInUser;
 
         console.log(loggedInUser);
         console.log(appData);
@@ -60,15 +63,16 @@ const Login = () => {
           <Link href="/">
             <a>
               {' '}
-              <img
-                className={`img-fluid mb-3 ${styles.authImage}`}
-                src="https://i.ibb.co/FDtTyNF/house-8.jpg"
-                alt="logo"
+              <Image
+                src="/favicon.png"
+                width={300}
+                height={100}
+                alt="logo image"
               />
             </a>
           </Link>
           <div className={styles.googleAuthSection}>
-            <Button variant="outline-secondary" onClick={handleGoogleSignIn}>
+            <Button variant="outline-danger" onClick={handleGoogleSignIn}>
               Continue With google
             </Button>
           </div>

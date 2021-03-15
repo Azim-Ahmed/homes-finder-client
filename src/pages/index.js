@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import AboutUs from '../Components/AboutUs';
 import Banner from '../Components/Banner';
 import ContactUs from '../Components/ContactUs';
@@ -10,13 +10,15 @@ import MapSection from '../Components/MapSection';
 import styles from '../styles/Home.module.css';
 import Footer from '../Components/Footer';
 import Loader from '../Components/Loader';
+import { UserContext } from './_app';
 
 export default function Home({ service }) {
-  useEffect(() => {
-    const data = localStorage.getItem('_increment');
-    const deta = JSON.parse(data);
-    console.log();
-  }, []);
+  const { appData, setAppData } = useContext(UserContext);
+  // useEffect(() => {
+  //   const data = window.localStorage.getItem('data');
+  //   //const deta = JSON.parse(data);
+  //   console.log({ data });
+  // }, []);
   console.log(service.service);
   if (!service.service.length) {
     return <Loader />;
@@ -27,7 +29,7 @@ export default function Home({ service }) {
         <title>Vega Home</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-      <Header />
+      <Header appData={appData} />
       <Banner />
       <AboutUs />
       <ServicesFirst service={service} />
