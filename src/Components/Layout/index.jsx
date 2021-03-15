@@ -46,7 +46,17 @@ const Layout = (props) => {
           </Row>
         </Container>
       ) : (
-        props.children
+        <Container fluid>
+          <Row>
+            <Col
+              md={12}
+              lg={12}
+              style={{ marginLeft: 'auto', paddingTop: '90px' }}
+            >
+              {props.children}
+            </Col>
+          </Row>
+        </Container>
       )}
     </>
   );

@@ -71,7 +71,7 @@ const Header = (props) => {
               <Link href="/">
                 <a className="nav-link">Our Work</a>
               </Link>
-              <Link href="/">
+              <Link href="/bookOnline">
                 <a className="nav-link">Book Online</a>
               </Link>
               <Link href="#contact">
@@ -133,7 +133,7 @@ const Header = (props) => {
               <Link href="/">
                 <a className="nav-link">Our Work</a>
               </Link>
-              <Link href="/">
+              <Link href="/bookOnline">
                 <a className="nav-link">Book Online</a>
               </Link>
               <Link href="#contact">

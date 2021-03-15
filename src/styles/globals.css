@@ -33,7 +33,13 @@ body {
   color: var(--text-color);
   scroll-behavior: smooth;
 }
+.react-datepicker__input-container {
+  width: inherit;
+}
 
+.react-datepicker-wrapper {
+  width: 100%;
+}
 a {
   color: inherit;
   text-decoration: none;
