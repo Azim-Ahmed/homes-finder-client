@@ -7,7 +7,7 @@ export const UserContext = createContext();
 
 function MyApp({ Component, pageProps }) {
   //states of the app
-  const [appData, setAppData] = useState('');
+  const [appData, setAppData] = useState({});
 
   return (
     <UserContext.Provider value={{ appData, setAppData }}>

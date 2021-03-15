@@ -6,25 +6,25 @@ import styles from './layout.module.css';
 const Layout = (props) => {
   return (
     <>
-      <Header />
+      <Header dashboard />
       {props.dashboard ? (
         <Container fluid>
           <Row>
             <Col md={2} className={styles.sidebar}>
               <ul>
-                <li className="mt-3">
+                <li>
                   <Link href={`/dashboard/home`}>
-                    <a>Home</a>
+                    <a className="nav-link mt-3">Home</a>
                   </Link>
                 </li>
-                <li className="mt-2">
+                <li className="">
                   <Link href={`/dashboard/service`}>
-                    <a>Service</a>
+                    <a className="nav-link mt-3">Service</a>
                   </Link>
                 </li>
-                <li className="mt-2">
+                <li className="">
                   <Link href={`/dashboard/orders`}>
-                    <a>Orders</a>
+                    <a className="nav-link mt-3">Orders</a>
                   </Link>
                 </li>
               </ul>

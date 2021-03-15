@@ -5,7 +5,8 @@ import { UserContext } from '../_app';
 import Modal from '../../Components/ReUseableUI/Modal';
 import Input from '../../Components/ReUseableUI/Input';
 import { api } from '../../urlConfig';
-
+import styles from '../../styles/dashboard.module.css';
+import Loader from '../../Components/Loader';
 const Service = (props) => {
   const { appData, setAppData } = useContext(UserContext);
 
@@ -20,7 +21,9 @@ const Service = (props) => {
   const [serviceDetailModal, setServiceDetailModal] = useState(false);
   const [serviceDetails, setServiceDetails] = useState(null);
   const [show, setShow] = useState(false);
-
+  //update service state
+  const [updatedServiceModal, setUpdatedServiceModal] = useState(false);
+  const [updatedData, setUpdatedData] = useState({});
   //
 
   useEffect(() => {
@@ -30,29 +33,15 @@ const Service = (props) => {
   }, [getAllServices]);
 
   const handleShow = () => setShow(true);
-
+  //show particular service details
   const showServiceDetailsModal = (service) => {
     setServiceDetails(service);
     setServiceDetailModal(true);
   };
 
   const handleClose = () => {
-    // const form = new FormData();
-    // form.append('name', name);
-    // form.append('time', time);
-    // form.append('price', price);
-    // form.append('description', description);
-    // form.append('servicePicture', servicePicture);
     const formData = { name, time, price, description, servicePicture };
-    //const data = JSON.stringify(formData);
     console.log(formData);
-    // let object = {};
-    // form.forEach(function (value, key) {
-    //   object[key] = value;
-    // });
-
-    // var json = JSON.stringify(object);
-    // console.log(json);
     fetch(`${api}/service/create`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -60,34 +49,46 @@ const Service = (props) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log('done');
+        alert('One Service Item Added');
       });
-
     setShow(false);
   };
 
   const renderAllServicesData = () => {
+    if (!getAllServices.length) {
+      return <Loader />;
+    }
+
     return (
-      <Table style={{ fontSize: '.9rem' }} striped bordered hover>
+      <Table responsive style={{ fontSize: '.9rem' }} striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Shoow Details</th>
+            <th>update</th>
+            <th>delete</th>
           </tr>
         </thead>
         <tbody>
           {getAllServices.length > 0
             ? getAllServices.map((service, index) => (
-                <tr
-                  key={service._id}
-                  onClick={() => showServiceDetailsModal(service, index)}
-                >
+                <tr key={service._id}>
                   <td>{index + 1}</td>
                   <td>{service.name}</td>
                   <td>{service.description}</td>
                   <td>{service.price}</td>
+                  <td onClick={() => showServiceDetailsModal(service)}>
+                    <Button variant="dark"> Show Deatils</Button>
+                  </td>
+                  <td onClick={() => updateServiceModal(service)}>
+                    <Button variant="warning"> Update</Button>
+                  </td>
+                  <td onClick={() => deleteService(service)}>
+                    <Button variant="danger"> Delete</Button>
+                  </td>
                 </tr>
               ))
             : null}
@@ -136,37 +137,13 @@ const Service = (props) => {
           placeholder={`servicePicture URL`}
           onChange={(e) => setServicePicture(e.target.value)}
         />
-        {/* <select
-          value={categoryId}
-          className="form-control"
-          onChange={(e) => setCategoryId(e.target.value)}
-        >
-          <option value="">Select Category</option>
-          {createCategoryList(category.categories).map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          ))}
-        </select>
-        {productPictures.length > 0
-          ? productPictures.map((pic, index) => (
-              <div key={index}>{pic.name}</div>
-            ))
-          : null} */}
-        {/* <input
-          className="mt-3"
-          type="file"
-          name="productPicture"
-          onChange={handleProductPictures}
-        /> */}
       </Modal>
     );
   };
-
+  //service Details
   const renderServiceDetailModal = () => {
-    // console.log(serviceDetails);
     if (!serviceDetails) {
-      return null;
+      return null && <Loader />;
     }
     return (
       <Modal
@@ -178,34 +155,166 @@ const Service = (props) => {
       >
         <Row>
           <Col md="6">
-            <label className="key">Name</label>
+            <label className="bg-secondary text-white p-2 key">Name</label>
             <p className="value">{serviceDetails.name}</p>
           </Col>
           <Col md="6">
-            <label className="key">Price</label>
+            <label className="bg-secondary text-white p-2 key">Price</label>
             <p className="value">{serviceDetails.price}</p>
           </Col>
         </Row>
 
         <Row>
           <Col md="6">
-            <label className="key">Updated time</label>
+            <label className="bg-secondary text-white p-2 key">
+              Updated time
+            </label>
             <p className="value">{serviceDetails.updatedAt}</p>
           </Col>
           <Col md="6">
-            <label className="key">Created Time</label>
+            <label className="bg-secondary text-white p-2 key">
+              Created Time
+            </label>
             <p className="value">{serviceDetails.createdAt}</p>
           </Col>
         </Row>
         <Row className="text-center">
           <Col md="12">
-            <label className="key">Description</label>
+            <label className="bg-secondary text-white p-2 key">
+              Description
+            </label>
             <p className="value">{serviceDetails.description}</p>
+          </Col>
+          <Col md="12">
+            <label className="bg-secondary text-white p-2 key">
+              Service Picture
+            </label>
+            <img
+              className={`value img-fluid ${styles.detailsImage}`}
+              src={serviceDetails.servicePicture}
+            />
           </Col>
         </Row>
       </Modal>
     );
   };
+
+  //update service section
+
+  const updateServiceModal = (service) => {
+    setServiceDetails(service);
+    setUpdatedServiceModal(true);
+  };
+
+  const handleServiceInput = (e) => {
+    setUpdatedData({ ...updatedData, [e.target.name]: e.target.value });
+  };
+
+  const updateServiceForm = () => {
+    console.log(updatedData);
+
+    if (updatedData) {
+      fetch(`${api}/service/update/${serviceDetails._id}`, {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(updatedData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert('Updated');
+        });
+      setUpdatedServiceModal(false);
+    } else {
+      fetch(`${api}/service/update/${serviceDetails._id}`, {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(serviceDetails),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert('Updated');
+        });
+      setUpdatedServiceModal(false);
+    }
+  };
+  //update service modal
+  const renderUpdateServicesModal = () => {
+    if (!serviceDetails) {
+      return null;
+    }
+    return (
+      <Modal
+        show={updatedServiceModal}
+        modalTitle={`Update Service`}
+        handleClose={updateServiceForm}
+        size="lg"
+        update
+      >
+        <Row>
+          <Col md={6}>
+            <label className="key">Name</label>
+            <Input
+              name="name"
+              defaultValue={serviceDetails.name}
+              placeholder={`Service Name`}
+              onChange={handleServiceInput}
+            />
+          </Col>
+          <Col md={6}>
+            <label className="key">Price</label>
+            <Input
+              name="price"
+              defaultValue={serviceDetails.price}
+              placeholder={`Price`}
+              onChange={handleServiceInput}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <label className="key">Description</label>
+            <Input
+              name="description"
+              defaultValue={serviceDetails.description}
+              placeholder={`Description`}
+              onChange={handleServiceInput}
+            />
+          </Col>
+          <Col md={6}>
+            <label className="key">Time</label>
+            <Input
+              name="time"
+              defaultValue={serviceDetails.time}
+              placeholder={`Time`}
+              onChange={handleServiceInput}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <label className="key">servicePicture</label>
+            <Input
+              name="servicePicture"
+              defaultValue={serviceDetails.servicePicture}
+              placeholder={`servicePicture`}
+              onChange={handleServiceInput}
+            />
+          </Col>
+        </Row>
+      </Modal>
+    );
+  };
+
+  const deleteService = (service) => {
+    fetch(`${api}/service/delete/${service._id}`, {
+      method: 'DELETE',
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        alert('deleted');
+      });
+  };
+
   return (
     <Layout dashboard>
       <div className="d-flex justify-content-between mb-3">
@@ -218,6 +327,7 @@ const Service = (props) => {
       {renderAllServicesData()}
       {renderAddServiceModal()}
       {renderServiceDetailModal()}
+      {renderUpdateServicesModal()}
     </Layout>
   );
 };
