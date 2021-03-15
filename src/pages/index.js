@@ -19,10 +19,8 @@ export default function Home({ service }) {
   //   //const deta = JSON.parse(data);
   //   console.log({ data });
   // }, []);
-  console.log(service.service);
-  if (!service.service.length) {
-    return <Loader />;
-  }
+  //console.log(service.service);
+
   return (
     <div>
       <Head>
