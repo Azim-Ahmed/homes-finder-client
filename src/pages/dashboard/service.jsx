@@ -39,7 +39,7 @@ const Service = (props) => {
     setServiceDetailModal(true);
   };
 
-  const handleClose = () => {
+  const handleAddService = () => {
     const formData = { name, time, price, description, servicePicture };
     console.log(formData);
     fetch(`${api}/service/create`, {
@@ -80,14 +80,32 @@ const Service = (props) => {
                   <td>{service.name}</td>
                   <td>{service.description}</td>
                   <td>{service.price}</td>
-                  <td onClick={() => showServiceDetailsModal(service)}>
-                    <Button variant="dark"> Show Deatils</Button>
+                  <td>
+                    <Button
+                      onClick={() => showServiceDetailsModal(service)}
+                      variant="dark"
+                    >
+                      {' '}
+                      Show Deatils
+                    </Button>
                   </td>
-                  <td onClick={() => updateServiceModal(service)}>
-                    <Button variant="warning"> Update</Button>
+                  <td>
+                    <Button
+                      onClick={() => updateServiceModal(service)}
+                      variant="warning"
+                    >
+                      {' '}
+                      Update
+                    </Button>
                   </td>
-                  <td onClick={() => deleteService(service)}>
-                    <Button variant="danger"> Delete</Button>
+                  <td>
+                    <Button
+                      onClick={() => deleteService(service)}
+                      variant="danger"
+                    >
+                      {' '}
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))
@@ -96,15 +114,16 @@ const Service = (props) => {
       </Table>
     );
   };
-
+  //add service Modal
   const renderAddServiceModal = () => {
     return (
       <Modal
         size="lg"
         show={show}
         addServiceButton={true}
-        handleClose={handleClose}
-        modalTitle="Add New Product"
+        onClick={handleAddService}
+        handleClose={() => setShow(false)}
+        modalTitle="Add New Service"
       >
         <Input
           label="Name"
@@ -246,7 +265,9 @@ const Service = (props) => {
       <Modal
         show={updatedServiceModal}
         modalTitle={`Update Service`}
-        handleClose={updateServiceForm}
+        // handleClose={updateServiceForm}
+        onClick={updateServiceForm}
+        handleClose={() => setUpdatedServiceModal(false)}
         size="lg"
         update
       >
@@ -317,7 +338,7 @@ const Service = (props) => {
 
   return (
     <Layout dashboard>
-      <div className="d-flex justify-content-between mb-3">
+      <div className="d-flex justify-content-between my-3">
         <h1 className="text-white">Service</h1>
         <Button variant="primary" onClick={handleShow}>
           Add Service

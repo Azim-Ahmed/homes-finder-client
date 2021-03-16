@@ -1,0 +1,21 @@
+.cardbackground {
+  background: transparent;
+  box-shadow: 0px 0px 4px gray;
+}
+.cardTitileBorder {
+  border-bottom: 1px solid gray;
+  margin: 10px 0px;
+  padding: 15px 0px;
+}
+.CardImageSection {
+  height: 16rem;
+  width: 100%;
+}
+
+.cardbackground:hover,
+.cardbackground:focus,
+.cardbackground:active {
+  color: #010305;
+  border-color: #205188;
+  box-shadow: 0px 0px 4px gray;
+}

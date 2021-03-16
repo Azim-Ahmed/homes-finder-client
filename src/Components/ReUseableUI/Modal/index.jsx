@@ -14,7 +14,7 @@ const NewModal = (props) => {
           </Button>
         )}
         {(props.addServiceButton || props.update) && (
-          <Button variant="primary" onClick={props.handleClose}>
+          <Button variant="primary" onClick={props.onClick}>
             Save Changes
           </Button>
         )}

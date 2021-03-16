@@ -1,12 +1,7 @@
-/* .sidebar {
-  margin-top: 55px;
-  background: #fff;
-  max-width: 320px;
-  min-width: fit-content;
-  min-height: 100vh;
-} */
-
-/* The side navigation menu */
+.LayoutChildrenSection {
+  margin-left: 'auto';
+  padding-top: '90px';
+}
 .sidebar {
   margin: 0;
   padding: 0;

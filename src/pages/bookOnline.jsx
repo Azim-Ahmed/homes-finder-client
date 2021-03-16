@@ -2,6 +2,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Layout from '../Components/Layout';
 import Loader from '../Components/Loader';
 import Link from 'next/link';
+import styles from '../styles/bookOnline.module.css';
 
 const BookOnline = ({ service }) => {
   const servicesData = service.service;
@@ -9,7 +10,7 @@ const BookOnline = ({ service }) => {
     return <Loader />;
   }
   return (
-    <Layout>
+    <Layout navColor={true} dashboard={false}>
       <Container>
         <Row className="mt-5">
           <Col className="mt-5">
@@ -18,25 +19,42 @@ const BookOnline = ({ service }) => {
         </Row>
         <Row>
           {servicesData.map((servicedata) => (
-            <Col className="my-3" md={4} sm={6} xs={12} key={servicedata._id}>
-              <Card>
-                <Card.Img variant="top" src={servicedata.servicePicture} />
+            <Col
+              className="my-3"
+              lg={4}
+              md={4}
+              sm={6}
+              xs={12}
+              key={servicedata._id}
+            >
+              <Card className={styles.cardbackground}>
+                <Card.Img
+                  variant="top"
+                  className={styles.CardImageSection}
+                  src={servicedata.servicePicture}
+                />
                 <Card.Body>
-                  <Card.Title>{servicedata.name}</Card.Title>
-                  <Card.Text>{servicedata.description}</Card.Text>
+                  <Card.Title className={styles.cardTitileBorder}>
+                    {servicedata.name}
+                  </Card.Title>
+                  <Card.Text className="text-justify">
+                    {servicedata.description}
+                  </Card.Text>
                   <Link href={`/book/${servicedata._id}`}>
                     <a>
-                      <Button variant="outline-info">Book Now</Button>
+                      <Button className="py-2 my-3" variant="outline-info">
+                        Request to Book
+                      </Button>
                     </a>
                   </Link>
                 </Card.Body>
                 <Card.Footer className="d-flex justify-content-between">
-                  <small className="text-muted">
+                  <strong className="text-muted">
                     time : <span> {servicedata.time}</span>h
-                  </small>
-                  <small className="text-muted">
+                  </strong>
+                  <strong className="text-muted">
                     price : <span> {servicedata.price}</span>$
-                  </small>
+                  </strong>
                 </Card.Footer>
               </Card>
             </Col>

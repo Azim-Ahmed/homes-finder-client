@@ -35,7 +35,7 @@ const Header = (props) => {
       document.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
+  console.log(props.navColor);
   return (
     <Container fluid>
       {props.dashboard ? (
@@ -100,7 +100,9 @@ const Header = (props) => {
       ) : (
         <Navbar
           fixed="top"
-          className={`${styles[navRef.current]} py-3`}
+          className={` ${styles[navRef.current]} ${
+            props.navColor && styles.navBackground
+          }  py-3`}
           expand="lg"
         >
           <Scrollspy

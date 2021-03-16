@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import AboutUs from '../Components/AboutUs';
 import Banner from '../Components/Banner';
 import ContactUs from '../Components/ContactUs';
@@ -14,15 +14,20 @@ import { UserContext } from './_app';
 
 export default function Home({ service }) {
   const { appData, setAppData } = useContext(UserContext);
-  // useEffect(() => {
-  //   const data = window.localStorage.getItem('data');
-  //   //const deta = JSON.parse(data);
-  //   console.log({ data });
-  // }, []);
-  //console.log(service.service);
+  const [backgorundAbout, setBackgroundAbout] = useState('PrimaryBackground');
+  const navRef = useRef();
+  navRef.current = backgorundAbout;
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBackgroundAbout('grayShade');
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  console.log(backgorundAbout);
   return (
-    <div>
+    <div className={styles[navRef.current]}>
       <Head>
         <title>Vega Home</title>
         <link rel="icon" href="/logo.png" />

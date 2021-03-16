@@ -1,5 +1,6 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import Header from '../Header';
+import Footer from '../Footer';
 import Link from 'next/link';
 import styles from './layout.module.css';
 import { useContext, useEffect } from 'react';
@@ -17,7 +18,7 @@ const Layout = (props) => {
 
   return (
     <>
-      <Header appData={appData} dashboard />
+      <Header navColor={props.navColor} appData={appData} dashboard />
       {props.dashboard ? (
         <Container fluid>
           <Row>
@@ -40,7 +41,7 @@ const Layout = (props) => {
                 </li>
               </ul>
             </Col>
-            <Col md={10} style={{ marginLeft: 'auto', paddingTop: '90px' }}>
+            <Col md={10} className={styles.LayoutChildrenSection}>
               {props.children}
             </Col>
           </Row>
@@ -56,6 +57,7 @@ const Layout = (props) => {
               {props.children}
             </Col>
           </Row>
+          <Footer />
         </Container>
       )}
     </>
