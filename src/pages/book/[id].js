@@ -5,22 +5,48 @@ import Layout from '../../Components/Layout';
 import styles from '../../styles/singleService.module.css';
 import Calendar from 'react-calendar';
 import Link from 'next/link';
-import Input from '../../Components/ReUseableUI/Input';
 import Select from 'react-select';
+import { api } from '../../urlConfig';
 import { useForm } from 'react-hook-form';
 import 'react-calendar/dist/Calendar.css';
 
 const SingleService = ({ serviceData }) => {
+  const ParticularServiceData = serviceData.service;
+  const {
+    name,
+    price,
+    servicePicture,
+    slug,
+    time,
+    description,
+  } = ParticularServiceData;
   //state of react Calendar
 
   const [value, onChange] = useState(new Date());
   const dateData = value.toDateString();
   //state of this component
   const [serviceTime, setServiceTime] = useState(null);
-  const [OrderData, setOrderData] = useState({
-    time: serviceTime,
-    date: dateData,
-  });
+  const [orderData, setOrderData] = useState({});
+  orderData.time = serviceTime;
+  orderData.serviceName = name;
+  orderData.servicePrice = price;
+  orderData.serviceDescription = description;
+  orderData.servicePicture = servicePicture;
+  orderData.slug = slug;
+  orderData.time = time;
+  //
+  console.log(orderData);
+
+  // {
+  //   name: '',
+  //   email: '',
+  //   phoneNumber: '',
+  //   street: '',
+  //   floor: '',
+  //   city: '',
+  //   state: '',
+  //   message: '',
+  // }
 
   //state of conditional rendereing
   const [next, setNext] = useState(false);
@@ -36,7 +62,22 @@ const SingleService = ({ serviceData }) => {
       setNext(true);
     }
   };
-
+  //Request To book button onClick Function
+  const RequestToBookForApproval = () => {
+    if (!orderData) {
+      setNexty(<p className="text-danger">Please Fill the Data Correctly</p>);
+    } else {
+      fetch(`${api}/order/create`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(orderData),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          alert('One Service Item Added');
+        });
+    }
+  };
   const optionsMorning = [
     { value: '9:00 am', label: '9:00 am' },
     { value: '9:30 am', label: '9:30 am' },
@@ -66,13 +107,13 @@ const SingleService = ({ serviceData }) => {
   const router = useRouter();
   console.log(serviceData.service);
   console.log(dateData);
-  const ParticularServiceData = serviceData.service;
 
   //render form
 
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
+    setOrderData(data);
   };
   //render time and date(calendar and time components)
   const renderDateAndTime = () => {
@@ -250,7 +291,7 @@ const SingleService = ({ serviceData }) => {
   return (
     <Layout>
       <Row className="text-center mt-4">
-        <Col md={{ span: 8, offset: 2 }}>
+        <Col md={{ span: 6, offset: 3 }}>
           {next && (
             <div className="text-center">
               {' '}
@@ -279,10 +320,9 @@ const SingleService = ({ serviceData }) => {
                   </Card.Title>
                   <Card.Text>{dateData}</Card.Text>
                   <Card.Text>{serviceTime}</Card.Text>
-
                   {/* <Link href={`/book/${ParticularServiceData._id}`}>
                     <a> */}
-                  <Button
+                  {/* <Button
                     block
                     size="lg"
                     className="py-2 my-3"
@@ -290,7 +330,30 @@ const SingleService = ({ serviceData }) => {
                     onClick={formRenderSectionByNextButton}
                   >
                     Next
-                  </Button>
+                  </Button> */}
+                  {!orderData && (
+                    <Button
+                      block
+                      size="lg"
+                      className="py-2 my-3"
+                      variant="outline-info"
+                      onClick={formRenderSectionByNextButton}
+                    >
+                      Next
+                    </Button>
+                  )}
+                  {orderData && (
+                    <Button
+                      block
+                      size="lg"
+                      className="py-2 my-3"
+                      variant="outline-info"
+                      onClick={RequestToBookForApproval}
+                    >
+                      Request To Book
+                    </Button>
+                  )}
+
                   {/* </a>
                   </Link> */}
                   {serviceTime ? '' : nexty}
