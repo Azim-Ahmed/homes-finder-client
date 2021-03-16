@@ -22,13 +22,16 @@ const SingleService = ({ serviceData }) => {
     date: dateData,
   });
 
+  //state of conditional rendereing
   const [next, setNext] = useState(false);
-  //time Section
+  //state of error or correct time
+  const [nexty, setNexty] = useState(null);
 
   //next button function
-  const formRenderSectionByNext = () => {
+  const formRenderSectionByNextButton = () => {
     if (!serviceTime) {
-      return setNext(false);
+      setNext(false);
+      setNexty(<p className="text-danger">Please Select the time</p>);
     } else {
       setNext(true);
     }
@@ -54,9 +57,9 @@ const SingleService = ({ serviceData }) => {
     { value: '4:30 pm', label: '4:30 pm' },
   ];
   const optionsEvening = [{ value: '5:00 am', label: '5:00 am' }];
-
-  const handleTimeChange = (e) => {
-    setServiceTime(e.value);
+  //react-select timeSection
+  const handleTimeChange = (select) => {
+    setServiceTime(select.value);
   };
   console.log(serviceTime);
 
@@ -71,122 +74,7 @@ const SingleService = ({ serviceData }) => {
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
-
-  const formDataSection = () => {
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = (data) => {
-      alert(JSON.stringify(data));
-    };
-    return (
-      <>
-        <Form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
-          <Form.Group controlId="fname">
-            <Form.Control
-              type="text"
-              name="fname"
-              placeholder="First Name"
-              ref={register({ required: true })}
-            />
-            {errors.fname && (
-              <small className="text-danger form-text">
-                Please enter first name
-              </small>
-            )}
-          </Form.Group>
-
-          <Form.Group controlId="formBasicEmail">
-            <Form.Control
-              type="text"
-              name="email"
-              placeholder="Email Address"
-              ref={register({
-                required: true,
-                pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-              })}
-            />
-            {errors.email && (
-              <small className="text-danger form-text">
-                Please enter a valid Email-ID
-              </small>
-            )}
-          </Form.Group>
-          <Form.Group controlId="phoneNumber">
-            <Form.Control
-              type="text"
-              name="phoneNumber"
-              placeholder="Last Name"
-              ref={register({ required: false })}
-            />
-          </Form.Group>
-          <Row>
-            <Col>
-              {' '}
-              <Form.Group controlId="phoneNumber">
-                <Form.Control
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Last Name"
-                  ref={register({ required: false })}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              {' '}
-              <Form.Group controlId="phoneNumber">
-                <Form.Control
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Last Name"
-                  ref={register({ required: false })}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              {' '}
-              <Form.Group controlId="phoneNumber">
-                <Form.Control
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Last Name"
-                  ref={register({ required: false })}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              {' '}
-              <Form.Group controlId="phoneNumber">
-                <Form.Control
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Last Name"
-                  ref={register({ required: false })}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="Password"
-              ref={register({ required: true })}
-            />
-            {errors.password && (
-              <small className="text-danger form-text">
-                Please enter password
-              </small>
-            )}
-          </Form.Group>
-          <Button variant="danger" className="btn-block d-block" type="submit">
-            Register
-          </Button>
-        </Form>
-      </>
-    );
-  };
+  //render time and date(calendar and time components)
   const renderDateAndTime = () => {
     return (
       <Col md={{ span: 6, offset: 1 }}>
@@ -225,7 +113,7 @@ const SingleService = ({ serviceData }) => {
               <Col>
                 {' '}
                 <Select
-                  instanceId="evening"
+                  instanceId="Evening"
                   autoFocus={true}
                   onChange={handleTimeChange}
                   options={optionsEvening}
@@ -238,15 +126,149 @@ const SingleService = ({ serviceData }) => {
       </Col>
     );
   };
+
+  const renderHookForm = () => {
+    return (
+      <Col md={{ span: 6, offset: 1 }}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form.Group controlId="name">
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="*Name"
+              ref={register({ required: true })}
+            />
+            {errors.name && (
+              <small className="text-danger form-text">Please enter name</small>
+            )}
+          </Form.Group>
+
+          <Form.Group controlId="email">
+            <Form.Control
+              type="text"
+              name="email"
+              placeholder="*Email Address"
+              ref={register({
+                required: true,
+                pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+              })}
+            />
+            {errors.email && (
+              <small className="text-danger form-text">
+                Please enter a valid Email-ID
+              </small>
+            )}
+          </Form.Group>
+          <Form.Group controlId="phoneNumber">
+            <Form.Control
+              type="text"
+              name="phoneNumber"
+              placeholder="*Phone Number"
+              ref={register({ required: true })}
+            />
+            {errors.phoneNumber && (
+              <small className="text-danger form-text">
+                Please enter a valid Phone Number
+              </small>
+            )}
+          </Form.Group>
+          <Row>
+            <Col>
+              {' '}
+              <Form.Group controlId="street">
+                <Form.Control
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="*Street"
+                  ref={register({ required: true })}
+                />
+                {errors.street && (
+                  <small className="text-danger form-text">
+                    Please enter a valid street
+                  </small>
+                )}
+              </Form.Group>
+            </Col>
+            <Col>
+              {' '}
+              <Form.Group controlId="phoneNumber">
+                <Form.Control
+                  type="text"
+                  name="floor"
+                  placeholder="Apt/Floor No."
+                  ref={register({ required: false })}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              {' '}
+              <Form.Group controlId="city">
+                <Form.Control
+                  type="text"
+                  name="city"
+                  placeholder="*City"
+                  ref={register({ required: true })}
+                />
+                {errors.city && (
+                  <small className="text-danger form-text">
+                    Please enter your city
+                  </small>
+                )}
+              </Form.Group>
+            </Col>
+            <Col>
+              {' '}
+              <Form.Group controlId="state">
+                <Form.Control
+                  type="text"
+                  name="state"
+                  placeholder="State"
+                  ref={register({ required: false })}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <Form.Group controlId="message">
+            <Form.Control
+              type="text"
+              name="message"
+              placeholder="Add your Message"
+              ref={register({ required: false })}
+            />
+          </Form.Group>
+          <small className="text-muted">*Required Info</small>
+          <Button variant="danger" className="btn-block d-block" type="submit">
+            Register
+          </Button>
+        </Form>
+      </Col>
+    );
+  };
   return (
     <Layout>
       <Row className="text-center mt-4">
         <Col md={{ span: 8, offset: 2 }}>
-          <h1 className="text-white text-start my-5 py-5">Schedule Online</h1>
+          {next && (
+            <div className="text-center">
+              {' '}
+              <h1>Add Your Info</h1>
+              <p>Tell us a bit about yourself</p>
+            </div>
+          )}
+          {!next && (
+            <h1 className="text-white text-justify  my-5 py-5">
+              {' '}
+              Schedule Online
+            </h1>
+          )}
         </Col>
       </Row>
       <Row className="text-center mt-4">
-        {renderDateAndTime()}
+        {!next && renderDateAndTime()}
+        {next && renderHookForm()}
         <Col md={4} className="mt-5">
           <div id="wrapper">
             <div id="sticky">
@@ -265,17 +287,13 @@ const SingleService = ({ serviceData }) => {
                     size="lg"
                     className="py-2 my-3"
                     variant="outline-info"
-                    onClick={formRenderSectionByNext}
+                    onClick={formRenderSectionByNextButton}
                   >
                     Next
                   </Button>
                   {/* </a>
                   </Link> */}
-                  {next ? (
-                    <p className="text-danger">Please select Time</p>
-                  ) : (
-                    ''
-                  )}
+                  {serviceTime ? '' : nexty}
                 </Card.Body>
               </Card>
             </div>
@@ -283,121 +301,7 @@ const SingleService = ({ serviceData }) => {
         </Col>
       </Row>
       <Row>
-        <Col md={{ span: 8, offset: 2 }}>
-          {next && (
-            <>
-              <Form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group controlId="fname">
-                  <Form.Control
-                    type="text"
-                    name="fname"
-                    placeholder="First Name"
-                    ref={register({ required: true })}
-                  />
-                  {errors.fname && (
-                    <small className="text-danger form-text">
-                      Please enter first name
-                    </small>
-                  )}
-                </Form.Group>
-
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control
-                    type="text"
-                    name="email"
-                    placeholder="Email Address"
-                    ref={register({
-                      required: true,
-                      pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                    })}
-                  />
-                  {errors.email && (
-                    <small className="text-danger form-text">
-                      Please enter a valid Email-ID
-                    </small>
-                  )}
-                </Form.Group>
-                <Form.Group controlId="phoneNumber">
-                  <Form.Control
-                    type="text"
-                    name="phoneNumber"
-                    placeholder="Last Name"
-                    ref={register({ required: false })}
-                  />
-                </Form.Group>
-                <Row>
-                  <Col>
-                    {' '}
-                    <Form.Group controlId="phoneNumber">
-                      <Form.Control
-                        type="text"
-                        name="phoneNumber"
-                        placeholder="Last Name"
-                        ref={register({ required: false })}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col>
-                    {' '}
-                    <Form.Group controlId="phoneNumber">
-                      <Form.Control
-                        type="text"
-                        name="phoneNumber"
-                        placeholder="Last Name"
-                        ref={register({ required: false })}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    {' '}
-                    <Form.Group controlId="phoneNumber">
-                      <Form.Control
-                        type="text"
-                        name="phoneNumber"
-                        placeholder="Last Name"
-                        ref={register({ required: false })}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col>
-                    {' '}
-                    <Form.Group controlId="phoneNumber">
-                      <Form.Control
-                        type="text"
-                        name="phoneNumber"
-                        placeholder="Last Name"
-                        ref={register({ required: false })}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    ref={register({ required: true })}
-                  />
-                  {errors.password && (
-                    <small className="text-danger form-text">
-                      Please enter password
-                    </small>
-                  )}
-                </Form.Group>
-                <Button
-                  variant="danger"
-                  className="btn-block d-block"
-                  type="submit"
-                >
-                  Register
-                </Button>
-              </Form>
-            </>
-          )}
-        </Col>
+        <Col md={{ span: 8, offset: 2 }}></Col>
       </Row>
 
       <style jsx>
@@ -420,7 +324,7 @@ const SingleService = ({ serviceData }) => {
             margin: auto;
           }
           #wrapper {
-            height: 800px;
+            height: 700px;
           }
 
           // body {
