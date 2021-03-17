@@ -1,4 +1,4 @@
-import styles from './AboutUs.module.css';
+import styles from '../../styles/AboutUs.module.css';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 

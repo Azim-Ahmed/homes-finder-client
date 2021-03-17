@@ -1,4 +1,4 @@
-import styles from './loader.module.css';
+import styles from '../../styles/loader.module.css';
 import Image from 'next/image';
 
 export default function Loader() {

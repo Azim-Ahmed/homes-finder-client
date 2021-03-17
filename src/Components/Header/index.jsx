@@ -35,7 +35,6 @@ const Header = (props) => {
       document.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  console.log(props.navColor);
   return (
     <Container fluid>
       {props.dashboard ? (

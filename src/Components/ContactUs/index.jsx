@@ -1,5 +1,5 @@
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
-import styles from "./contactUs.module.css";
+import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import styles from '../../styles/contactUs.module.css';
 const ContactUs = () => {
   return (
     <Container id="contact">
@@ -9,7 +9,7 @@ const ContactUs = () => {
           className="d-flex justify-content-center align-items-center"
         >
           <div>
-            {" "}
+            {' '}
             <h1>Contact Us</h1>
             <p>
               Info@Vegahomes.com

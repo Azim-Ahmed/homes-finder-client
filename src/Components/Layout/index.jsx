@@ -2,7 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import Header from '../Header';
 import Footer from '../Footer';
 import Link from 'next/link';
-import styles from './layout.module.css';
+import styles from '../../styles/layout.module.css';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../pages/_app';
 
@@ -49,11 +49,7 @@ const Layout = (props) => {
       ) : (
         <Container fluid>
           <Row>
-            <Col
-              md={12}
-              lg={12}
-              style={{ marginLeft: 'auto', paddingTop: '90px' }}
-            >
+            <Col md={12} lg={12} className={styles.LayoutChildrenSection}>
               {props.children}
             </Col>
           </Row>

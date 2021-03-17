@@ -48,8 +48,9 @@ const SingleService = ({ serviceData }) => {
   //   message: '',
   // }
 
-  //state of conditional rendereing
+  //state of conditional form/ calendar rendereing
   const [next, setNext] = useState(false);
+  const [request, setRequest] = useState(false);
   //state of error or correct time
   const [nexty, setNexty] = useState(null);
 
@@ -64,7 +65,7 @@ const SingleService = ({ serviceData }) => {
   };
   //Request To book button onClick Function
   const RequestToBookForApproval = () => {
-    if (!orderData) {
+    if (!orderData.name && !orderData.email) {
       setNexty(<p className="text-danger">Please Fill the Data Correctly</p>);
     } else {
       fetch(`${api}/order/create`, {
@@ -112,7 +113,8 @@ const SingleService = ({ serviceData }) => {
 
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    setRequest(true);
+
     setOrderData(data);
   };
   //render time and date(calendar and time components)
@@ -167,6 +169,8 @@ const SingleService = ({ serviceData }) => {
       </Col>
     );
   };
+
+  //react hook form to get data
 
   const renderHookForm = () => {
     return (
@@ -331,7 +335,18 @@ const SingleService = ({ serviceData }) => {
                   >
                     Next
                   </Button> */}
-                  {!orderData && (
+
+                  {request ? (
+                    <Button
+                      block
+                      size="lg"
+                      className="py-2 my-3"
+                      variant="outline-info"
+                      onClick={RequestToBookForApproval}
+                    >
+                      Request
+                    </Button>
+                  ) : (
                     <Button
                       block
                       size="lg"
@@ -340,17 +355,6 @@ const SingleService = ({ serviceData }) => {
                       onClick={formRenderSectionByNextButton}
                     >
                       Next
-                    </Button>
-                  )}
-                  {orderData && (
-                    <Button
-                      block
-                      size="lg"
-                      className="py-2 my-3"
-                      variant="outline-info"
-                      onClick={RequestToBookForApproval}
-                    >
-                      Request To Book
                     </Button>
                   )}
 
@@ -437,3 +441,51 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
+
+// {!orderData && (
+//   <Button
+//     block
+//     size="lg"
+//     className="py-2 my-3"
+//     variant="outline-info"
+//     onClick={formRenderSectionByNextButton}
+//   >
+//     Next
+//   </Button>
+// )}
+// {/*  {orderData.name && orderData.email && ( */}
+// {orderData && (
+//   <Button
+//     block
+//     size="lg"
+//     className="py-2 my-3"
+//     variant="outline-info"
+//     onClick={RequestToBookForApproval}
+//   >
+//     Request To Book
+//   </Button>
+// )}
+
+// {!orderData && !orderData.name && (
+//   <Button
+//     block
+//     size="lg"
+//     className="py-2 my-3"
+//     variant="outline-info"
+//     onClick={formRenderSectionByNextButton}
+//   >
+//     Next
+//   </Button>
+// )}
+// {/*  {orderData.name && orderData.email && ( */}
+// {orderData.name !== '' && (
+//   <Button
+//     block
+//     size="lg"
+//     className="py-2 my-3"
+//     variant="outline-info"
+//     onClick={RequestToBookForApproval}
+//   >
+//     Request To Book
+//   </Button>
+// )}

@@ -1,6 +1,6 @@
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import FakeData from '../practiceData';
-import styles from './ServiceFirst.module.css';
+import styles from '../../styles/ServiceFirst.module.css';
 import Link from 'next/link';
 
 export default function ServicesFirst({ service }) {
