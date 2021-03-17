@@ -20,39 +20,31 @@ const SingleService = ({ serviceData }) => {
     time,
     description,
   } = ParticularServiceData;
-  //state of react Calendar
 
+  //state of react Calendar
   const [value, onChange] = useState(new Date());
   const dateData = value.toDateString();
+
   //state of this component
   const [serviceTime, setServiceTime] = useState(null);
   const [orderData, setOrderData] = useState({});
-  orderData.time = serviceTime;
+  orderData.workTime = serviceTime;
+  orderData.workDate = dateData;
   orderData.serviceName = name;
-  orderData.servicePrice = price;
-  orderData.serviceDescription = description;
-  orderData.servicePicture = servicePicture;
-  orderData.slug = slug;
+  orderData.orderPrice = price;
+  orderData.orderDescription = description;
+  orderData.orderPicture = servicePicture;
   orderData.time = time;
   //
   console.log(orderData);
-
-  // {
-  //   name: '',
-  //   email: '',
-  //   phoneNumber: '',
-  //   street: '',
-  //   floor: '',
-  //   city: '',
-  //   state: '',
-  //   message: '',
-  // }
 
   //state of conditional form/ calendar rendereing
   const [next, setNext] = useState(false);
   const [request, setRequest] = useState(false);
   //state of error or correct time
   const [nexty, setNexty] = useState(null);
+  //Successful page condition
+  const [success, setSuccess] = useState(false);
 
   //next button function
   const formRenderSectionByNextButton = () => {
@@ -75,7 +67,8 @@ const SingleService = ({ serviceData }) => {
       })
         .then((res) => res.json())
         .then((result) => {
-          alert('One Service Item Added');
+          //alert('One Service Item Added');
+          setSuccess(true);
         });
     }
   };
@@ -111,11 +104,11 @@ const SingleService = ({ serviceData }) => {
 
   //render form
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm();
   const onSubmit = (data) => {
     setRequest(true);
-
     setOrderData(data);
+    reset();
   };
   //render time and date(calendar and time components)
   const renderDateAndTime = () => {
@@ -206,7 +199,7 @@ const SingleService = ({ serviceData }) => {
           </Form.Group>
           <Form.Group controlId="phoneNumber">
             <Form.Control
-              type="text"
+              type="phone"
               name="phoneNumber"
               placeholder="*Phone Number"
               ref={register({ required: true })}
@@ -223,7 +216,7 @@ const SingleService = ({ serviceData }) => {
               <Form.Group controlId="street">
                 <Form.Control
                   type="text"
-                  name="phoneNumber"
+                  name="street"
                   placeholder="*Street"
                   ref={register({ required: true })}
                 />
@@ -285,91 +278,110 @@ const SingleService = ({ serviceData }) => {
             />
           </Form.Group>
           <small className="text-muted">*Required Info</small>
-          <Button variant="danger" className="btn-block d-block" type="submit">
+          <Button className={styles.submitButtonStyle} block type="submit">
             Register
           </Button>
         </Form>
       </Col>
     );
   };
+
+  //successFul page Component
+  const renderSuccessfulPage = () => {
+    return (
+      <Row>
+        <Col>
+          <div
+            style={{
+              height: '100vh',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundImage: `url($${orderData.orderPicture})`,
+            }}
+          ></div>
+
+          <div className={`${styles.bgText} text-justify`}>Order Success</div>
+        </Col>
+      </Row>
+    );
+  };
+
+  //main Component
   return (
     <Layout>
-      <Row className="text-center mt-4">
-        <Col md={{ span: 6, offset: 3 }}>
-          {next && (
-            <div className="text-center">
-              {' '}
-              <h1>Add Your Info</h1>
-              <p>Tell us a bit about yourself</p>
-            </div>
-          )}
-          {!next && (
-            <h1 className="text-white text-justify  my-5 py-5">
-              {' '}
-              Schedule Online
-            </h1>
-          )}
-        </Col>
-      </Row>
-      <Row className="text-center mt-4">
-        {!next && renderDateAndTime()}
-        {next && renderHookForm()}
-        <Col md={4} className="mt-5">
-          <div id="wrapper">
-            <div id="sticky">
-              <Card className={styles.cardbackgroundForm}>
-                <Card.Body>
-                  <Card.Title className={styles.cardTitileBorder}>
-                    {ParticularServiceData.name}
-                  </Card.Title>
-                  <Card.Text>{dateData}</Card.Text>
-                  <Card.Text>{serviceTime}</Card.Text>
-                  {/* <Link href={`/book/${ParticularServiceData._id}`}>
+      {success ? (
+        renderSuccessfulPage()
+      ) : (
+        <>
+          <Row className="text-center mt-4">
+            <Col md={{ span: 6, offset: 3 }}>
+              {next && (
+                <div className="text-center">
+                  {' '}
+                  <h1>Add Your Info</h1>
+                  <p>Tell us a bit about yourself</p>
+                </div>
+              )}
+              {!next && (
+                <h1 className="text-white text-justify  my-5 py-5">
+                  {' '}
+                  Schedule Online
+                </h1>
+              )}
+            </Col>
+          </Row>
+          <Row className="text-center mt-4">
+            {!next && renderDateAndTime()}
+            {next && renderHookForm()}
+            <Col md={4} className="mt-5">
+              <div id="wrapper">
+                <div id="sticky">
+                  <Card className={styles.cardbackgroundForm}>
+                    <Card.Body>
+                      <Card.Title className={styles.cardTitileBorder}>
+                        {ParticularServiceData.name}
+                      </Card.Title>
+                      <Card.Text>{dateData}</Card.Text>
+                      <Card.Text>{serviceTime}</Card.Text>
+                      {/* <Link href={`/book/${ParticularServiceData._id}`}>
                     <a> */}
-                  {/* <Button
-                    block
-                    size="lg"
-                    className="py-2 my-3"
-                    variant="outline-info"
-                    onClick={formRenderSectionByNextButton}
-                  >
-                    Next
-                  </Button> */}
+                      {request ? (
+                        <Button
+                          block
+                          size="lg"
+                          className="py-2 my-3"
+                          variant="outline-info"
+                          onClick={RequestToBookForApproval}
+                        >
+                          Request
+                        </Button>
+                      ) : (
+                        <Button
+                          block
+                          size="lg"
+                          className="py-2 my-3"
+                          variant="outline-info"
+                          onClick={formRenderSectionByNextButton}
+                        >
+                          Next
+                        </Button>
+                      )}
 
-                  {request ? (
-                    <Button
-                      block
-                      size="lg"
-                      className="py-2 my-3"
-                      variant="outline-info"
-                      onClick={RequestToBookForApproval}
-                    >
-                      Request
-                    </Button>
-                  ) : (
-                    <Button
-                      block
-                      size="lg"
-                      className="py-2 my-3"
-                      variant="outline-info"
-                      onClick={formRenderSectionByNextButton}
-                    >
-                      Next
-                    </Button>
-                  )}
-
-                  {/* </a>
+                      {/* </a>
                   </Link> */}
-                  {serviceTime ? '' : nexty}
-                </Card.Body>
-              </Card>
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={{ span: 8, offset: 2 }}></Col>
-      </Row>
+                      {serviceTime ? '' : nexty}
+                    </Card.Body>
+                  </Card>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={{ span: 8, offset: 2 }}></Col>
+          </Row>
+        </>
+      )}
 
       <style jsx>
         {`

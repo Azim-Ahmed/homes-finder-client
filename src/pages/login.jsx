@@ -9,17 +9,37 @@ import firebaseConfig from '../firebase.config';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const Login = () => {
-  const { appData, setAppData } = useContext(UserContext);
+const Login = ({ getAdminEmail }) => {
+  console.log(getAdminEmail.email);
+  const allAdminEMail = getAdminEmail.email;
+  const {
+    appData,
+    setAppData,
+    loggedIn,
+    setLoggedIn,
+    admin,
+    setAdmin,
+  } = useContext(UserContext);
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
   }
-  useEffect(() => {
-    localStorage.setItem('_increment', JSON.stringify(appData));
-  }, []);
+  // useEffect(() => {
+  //   localStorage.setItem('_increment', JSON.stringify(appData));
+  // }, []);
   const router = useRouter();
   const dashboardSection = 'dashboard/home';
-  if (appData.email) {
+  const loginSection = '/login';
+
+  const adminEmail = allAdminEMail.filter(
+    (data) => data.email == appData.email
+  );
+  console.log(adminEmail);
+  if (!adminEmail) {
+    setAdmin(false);
+    router.push(loginSection);
+  }
+  if (adminEmail) {
+    setAdmin(true);
     router.push(dashboardSection);
   }
 
@@ -83,3 +103,14 @@ const Login = () => {
 };
 
 export default Login;
+
+export async function getServerSideProps() {
+  const res = await fetch('http://localhost:2000/api/admin/getAllAdmins');
+  const getAdminEmail = await res.json();
+
+  return {
+    props: {
+      getAdminEmail,
+    },
+  };
+}

@@ -28,6 +28,19 @@ const Orders = () => {
     setOrderDetails(order);
     setOrderDetailModal(true);
   };
+
+  //delete orders
+
+  const deleteOrder = (order) => {
+    fetch(`${api}/order/delete/${order._id}`, {
+      method: 'DELETE',
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        alert('deleted');
+      });
+  };
+
   //render all data Table
   const renderAllOrdersData = () => {
     return (
@@ -37,9 +50,8 @@ const Orders = () => {
             <th>#</th>
             <th>Name</th>
             <th>Price</th>
-            <th>Quantity</th>
+            <th>Email</th>
             <th>Shoow Details</th>
-
             <th>delete</th>
           </tr>
         </thead>
@@ -48,14 +60,17 @@ const Orders = () => {
             ? getAllOrders.map((order, index) => (
                 <tr key={order._id}>
                   <td>{index + 1}</td>
-                  <td>{order.name}</td>
-                  <td>{order.description}</td>
-                  <td>{order.price}</td>
+                  <td>{order.serviceName}</td>
+                  <td>{order.orderPrice}</td>
+                  <td>{order.email}</td>
                   <td onClick={() => showOrderDetailModal(order)}>
                     <Button variant="dark"> Show Deatils</Button>
                   </td>
                   <td>
-                    <Button variant="danger"> Delete</Button>
+                    <Button onClick={() => deleteOrder(order)} variant="danger">
+                      {' '}
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))
@@ -80,12 +95,66 @@ const Orders = () => {
       >
         <Row>
           <Col md="6">
-            <label className="bg-secondary text-white p-2 key">Name</label>
+            <label className="bg-secondary text-white p-2 key">
+              Client Name
+            </label>
             <p className="value">{orderDetails.name}</p>
           </Col>
+
           <Col md="6">
-            <label className="bg-secondary text-white p-2 key">Price</label>
-            <p className="value">{orderDetails.price}</p>
+            <label className="bg-secondary text-white p-2 key">
+              Service Name
+            </label>
+            <p className="value">{orderDetails.serviceName}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">
+              Order Price
+            </label>
+            <p className="value">{orderDetails.orderPrice}</p>
+          </Col>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">
+              Client Email
+            </label>
+            <p className="value">{orderDetails.email}</p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">City</label>
+            <p className="value">{orderDetails.city}</p>
+          </Col>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">Street</label>
+            <p className="value">{orderDetails.street}</p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">
+              Work Duration
+            </label>
+            <p className="value">{orderDetails.time}</p>
+          </Col>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">Work Time</label>
+            <p className="value">{orderDetails.workTime}</p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">Work Date</label>
+            <p className="value">{orderDetails.workDate}</p>
+          </Col>
+          <Col md="6">
+            <label className="bg-secondary text-white p-2 key">Work Time</label>
+            <p className="value">{orderDetails.workTime}</p>
           </Col>
         </Row>
 
@@ -108,7 +177,7 @@ const Orders = () => {
             <label className="bg-secondary text-white p-2 key">
               Description
             </label>
-            <p className="value">{orderDetails.description}</p>
+            <p className="value">{orderDetails.orderDescription}</p>
           </Col>
           <Col md="12">
             <label className="bg-secondary text-white p-2 key">
@@ -126,7 +195,7 @@ const Orders = () => {
 
   return (
     <Layout dashboard>
-      <h1 className="mb-4  text-center text-white">
+      <h1 className="my-4  text-center text-white">
         Welcome to the Orders Page
       </h1>
       {renderAllOrdersData()}

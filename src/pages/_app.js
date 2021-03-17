@@ -8,9 +8,13 @@ export const UserContext = createContext();
 function MyApp({ Component, pageProps }) {
   //states of the app
   const [appData, setAppData] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   return (
-    <UserContext.Provider value={{ appData, setAppData }}>
+    <UserContext.Provider
+      value={{ appData, setAppData, loggedIn, setLoggedIn, admin, setAdmin }}
+    >
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>

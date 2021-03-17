@@ -7,7 +7,14 @@ import { useContext, useEffect } from 'react';
 import { UserContext } from '../../pages/_app';
 
 const Layout = (props) => {
-  const { appData, setAppData } = useContext(UserContext);
+  const {
+    appData,
+    setAppData,
+    loggedIn,
+    setLoggedIn,
+    admin,
+    setAdmin,
+  } = useContext(UserContext);
 
   useEffect(() => {
     const homeSection = '/login';
@@ -23,23 +30,39 @@ const Layout = (props) => {
         <Container fluid>
           <Row>
             <Col md={2} className={styles.sidebar}>
-              <ul>
-                <li>
-                  <Link href={`/dashboard/home`}>
-                    <a className="nav-link mt-3">Home</a>
-                  </Link>
-                </li>
-                <li className="">
-                  <Link href={`/dashboard/service`}>
-                    <a className="nav-link mt-3">Service</a>
-                  </Link>
-                </li>
-                <li className="">
-                  <Link href={`/dashboard/orders`}>
-                    <a className="nav-link mt-3">Orders</a>
-                  </Link>
-                </li>
-              </ul>
+              {admin && (
+                <ul>
+                  <li>
+                    <Link href={`/dashboard/home`}>
+                      <a className="nav-link mt-3">Home</a>
+                    </Link>
+                  </li>
+                  <li className="">
+                    <Link href={`/dashboard/service`}>
+                      <a className="nav-link mt-3">Service</a>
+                    </Link>
+                  </li>
+                  <li className="">
+                    <Link href={`/dashboard/orders`}>
+                      <a className="nav-link mt-3">Orders</a>
+                    </Link>
+                  </li>
+                </ul>
+              )}
+              {!admin && (
+                <ul>
+                  <li>
+                    <Link href={`/dashboard/home`}>
+                      <a className="nav-link mt-3">Home</a>
+                    </Link>
+                  </li>
+                  <li className="">
+                    <Link href={`/dashboard/orders`}>
+                      <a className="nav-link mt-3">Orders</a>
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </Col>
             <Col md={10} className={styles.LayoutChildrenSection}>
               {props.children}

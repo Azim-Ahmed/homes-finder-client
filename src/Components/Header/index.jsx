@@ -8,11 +8,18 @@ import { UserContext } from '../../pages/_app';
 import { useRouter } from 'next/router';
 
 const Header = (props) => {
-  const { appData, setAppData } = useContext(UserContext);
+  const {
+    appData,
+    setAppData,
+    loggedIn,
+    setLoggedIn,
+    admin,
+    setAdmin,
+  } = useContext(UserContext);
   const handleSignOut = () => {
     setAppData({});
     const homeSection = '/login';
-    if (!appData) {
+    if (loggedIn || admin) {
       router.push(homeSection);
     }
   };
@@ -76,13 +83,13 @@ const Header = (props) => {
               <Link href="#contact">
                 <a className="nav-link">Contact Us</a>
               </Link>
-              {props.appData.email ? (
+              {loggedIn || admin ? (
                 <>
                   {' '}
                   <Link href="/dashboard/home">
                     <a className="nav-link">Dashboard</a>
                   </Link>
-                  <Link href="/login">
+                  <Link href="">
                     <a onClick={handleSignOut} className="nav-link">
                       Signout
                     </a>
