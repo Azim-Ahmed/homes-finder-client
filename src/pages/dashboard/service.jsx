@@ -41,7 +41,7 @@ const Service = (props) => {
 
   const handleAddService = () => {
     const formData = { name, time, price, description, servicePicture };
-    console.log(formData);
+    // console.log(formData);
     fetch(`${server}/service/create`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },

@@ -36,7 +36,7 @@ const SingleService = ({ serviceData }) => {
   orderData.orderPicture = servicePicture;
   orderData.time = time;
   //
-  console.log(orderData);
+  //console.log(orderData);
 
   //state of conditional form/ calendar rendereing
   const [next, setNext] = useState(false);
