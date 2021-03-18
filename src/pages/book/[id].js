@@ -447,54 +447,6 @@ export async function getStaticPaths() {
   services.service.forEach((service) => paths.push(`/book/${service._id}`));
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
-
-// {!orderData && (
-//   <Button
-//     block
-//     size="lg"
-//     className="py-2 my-3"
-//     variant="outline-info"
-//     onClick={formRenderSectionByNextButton}
-//   >
-//     Next
-//   </Button>
-// )}
-// {/*  {orderData.name && orderData.email && ( */}
-// {orderData && (
-//   <Button
-//     block
-//     size="lg"
-//     className="py-2 my-3"
-//     variant="outline-info"
-//     onClick={RequestToBookForApproval}
-//   >
-//     Request To Book
-//   </Button>
-// )}
-
-// {!orderData && !orderData.name && (
-//   <Button
-//     block
-//     size="lg"
-//     className="py-2 my-3"
-//     variant="outline-info"
-//     onClick={formRenderSectionByNextButton}
-//   >
-//     Next
-//   </Button>
-// )}
-// {/*  {orderData.name && orderData.email && ( */}
-// {orderData.name !== '' && (
-//   <Button
-//     block
-//     size="lg"
-//     className="py-2 my-3"
-//     variant="outline-info"
-//     onClick={RequestToBookForApproval}
-//   >
-//     Request To Book
-//   </Button>
-// )}

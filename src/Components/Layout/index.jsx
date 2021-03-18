@@ -33,25 +33,24 @@ const Layout = (props) => {
         <Container fluid>
           <Row>
             <Col md={2} className={styles.sidebar}>
-              {admin && (
-                <ul>
-                  <li>
-                    <Link href={`/dashboard/home`}>
-                      <a className="nav-link mt-3">Home</a>
-                    </Link>
-                  </li>
-                  <li className="">
-                    <Link href={`/dashboard/service`}>
-                      <a className="nav-link mt-3">Service</a>
-                    </Link>
-                  </li>
-                  <li className="">
-                    <Link href={`/dashboard/orders`}>
-                      <a className="nav-link mt-3">Orders</a>
-                    </Link>
-                  </li>
-                </ul>
-              )}
+              <ul>
+                <li>
+                  <Link href={`/dashboard/home`}>
+                    <a className="nav-link mt-3">Home</a>
+                  </Link>
+                </li>
+                <li className="">
+                  <Link href={`/dashboard/service`}>
+                    <a className="nav-link mt-3">Service</a>
+                  </Link>
+                </li>
+                <li className="">
+                  <Link href={`/dashboard/orders`}>
+                    <a className="nav-link mt-3">Orders</a>
+                  </Link>
+                </li>
+              </ul>
+              {/* 
               {!admin && (
                 <ul>
                   <li>
@@ -65,7 +64,7 @@ const Layout = (props) => {
                     </Link>
                   </li>
                 </ul>
-              )}
+              )} */}
             </Col>
             <Col md={10} className={styles.LayoutChildrenSection}>
               {props.children}
