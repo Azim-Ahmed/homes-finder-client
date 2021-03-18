@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport styles from '../../styles/Banner.module.css';\n\nvar Banner = function Banner() {\n  return /*#__PURE__*/_jsx(\"div\", {\n    id: \"home\",\n    className: styles.parallax\n  });\n};\n\nexport default Banner;","map":null,"metadata":{},"sourceType":"module"}
