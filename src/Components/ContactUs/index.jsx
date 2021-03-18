@@ -1,5 +1,5 @@
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
-import styles from '../../styles/contactUs.module.css';
+import styles from '../../styles/ContactUs.module.css';
 const ContactUs = () => {
   return (
     <Container id="contact">
