@@ -28,8 +28,8 @@ const Login = () => {
 
   useEffect(async () => {
     let response = await fetch(`${server}/admin/getAllAdmins`);
-    response = await response.json();
-    setAdminEmails(response.email);
+    let responsed = await response.json();
+    setAdminEmails(responsed.email);
   }, []);
   // console.log(adminEmails);
 
@@ -46,8 +46,6 @@ const Login = () => {
           name: displayName,
           email: email,
         });
-        //console.log(loggedInUser);
-        //console.log(userData);
         let adminEmail = adminEmails.filter(
           (data) => data.email == loggedInUser.email
         );
@@ -68,8 +66,6 @@ const Login = () => {
         const errorMessage = error.message;
         const emails = error.email;
         const credential = error.credential;
-        // console.log(errorCode, email, credential, errorMessage);
-        // setLoginError(credential);
         const errors = {
           credential,
           emails,
@@ -81,7 +77,7 @@ const Login = () => {
         }
       });
   };
-  console.log(loginError);
+  // console.log(loginError);
 
   return (
     <Container>

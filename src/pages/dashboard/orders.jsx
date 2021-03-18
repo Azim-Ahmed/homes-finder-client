@@ -4,26 +4,24 @@ import Layout from '../../Components/Layout';
 import { server } from '../../urlConfig';
 import Modal from '../../Components/ReUseableUI/Modal';
 import styles from '../../styles/dashboard.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Orders = () => {
   //states of order page
   const [getAllOrders, setGetAllOrders] = useState({});
   //order details Modal states
-  const [show, setShow] = useState(false);
+  const [deleteToast, setDeleteToast] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
   const [orderDetailModal, setOrderDetailModal] = useState(false);
   //hook of React
 
-  useEffect(() => {
-    fetch(`${server}/order/getAllOrders`)
+  useEffect(async () => {
+    await fetch(`${server}/order/getAllOrders`)
       .then((res) => res.json())
       .then((data) => setGetAllOrders(data.order));
   }, [getAllOrders]);
-  //console.log(getAllOrders);
 
-  //modal function
-  const handleShow = () => setShow(true);
-  //show particular order details
   const showOrderDetailModal = (order) => {
     setOrderDetails(order);
     setOrderDetailModal(true);
@@ -37,9 +35,22 @@ const Orders = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        alert('deleted');
+        if (result) {
+          return setDeleteToast(true);
+        }
       });
   };
+
+  const toastifyData = () =>
+    toast('🦄 Deleted succesfully!', {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   //render all data Table
   const renderAllOrdersData = () => {
@@ -66,7 +77,7 @@ const Orders = () => {
                   <td onClick={() => showOrderDetailModal(order)}>
                     <Button variant="dark"> Show Deatils</Button>
                   </td>
-                  <td>
+                  <td onClick={toastifyData}>
                     <Button onClick={() => deleteOrder(order)} variant="danger">
                       {' '}
                       Delete
@@ -200,6 +211,19 @@ const Orders = () => {
       </h1>
       {renderAllOrdersData()}
       {renderOrderDetailModal()}
+      {deleteToast && (
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      )}
     </Layout>
   );
 };
