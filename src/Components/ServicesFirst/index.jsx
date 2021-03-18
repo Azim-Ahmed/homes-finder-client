@@ -14,7 +14,7 @@ export default function ServicesFirst({ service }) {
         {service.service.length > 0
           ? service.service.map((services, index) => (
               <Col key={index} md={12}>
-                <Row>
+                <Row className="my-4 text-justify">
                   <Col md={{ span: 6 }}>
                     <img
                       className={styles.imagesSize}
@@ -27,12 +27,10 @@ export default function ServicesFirst({ service }) {
                       className={`${styles.CardStylesForServices} bg-dark p-5 mt-5 d-block text-white`}
                     >
                       <Card.Title as="h3">{services.name}</Card.Title>
-                      <Card.Text as="p">
-                        This is a wider card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
+                      <Card.Text as="p">{services.description}</Card.Text>
+                      <Card.Text>
+                        Service Hour: &nbsp; {services.time}h
                       </Card.Text>
-                      <Card.Text>Last updated 3 mins ago</Card.Text>
                       <Link href={`/book/${services._id}`}>
                         <a>
                           <Button variant="outline-info">Book Now</Button>
