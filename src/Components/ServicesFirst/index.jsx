@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function ServicesFirst({ service }) {
   console.log(service);
-  if (!service.service.length) {
+  if (service.service.length == 0) {
     return <Loader />;
   }
   return (

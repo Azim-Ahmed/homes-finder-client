@@ -8,9 +8,7 @@ const location = {
   lng: 90.406707,
 };
 
-const onLoad = (marker) => {
-  //console.log('marker: ', marker);
-};
+const onLoad = (marker) => {};
 
 function MapSection() {
   return (

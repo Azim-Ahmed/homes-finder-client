@@ -25,7 +25,6 @@ export default function Home({ service }) {
     return () => clearInterval(interval);
   }, []);
 
-  console.log(backgorundAbout);
   return (
     <div className={styles[navRef.current]}>
       <Head>

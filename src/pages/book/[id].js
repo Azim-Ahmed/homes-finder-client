@@ -96,11 +96,8 @@ const SingleService = ({ serviceData }) => {
   const handleTimeChange = (select) => {
     setServiceTime(select.value);
   };
-  console.log(serviceTime);
 
   const router = useRouter();
-  console.log(serviceData.service);
-  console.log(dateData);
 
   //render form
 

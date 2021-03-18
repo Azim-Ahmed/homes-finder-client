@@ -230,8 +230,6 @@ const Service = (props) => {
   };
 
   const updateServiceForm = () => {
-    console.log(updatedData);
-
     if (updatedData) {
       fetch(`${api}/service/update/${serviceDetails._id}`, {
         method: 'PATCH',
