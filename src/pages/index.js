@@ -32,13 +32,15 @@ export default function Home({ service }) {
         <title>Vega Home</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-      <Header />
-      <Banner />
-      <AboutUs />
-      <ServicesFirst service={service} />
-      <ContactUs />
-      <MapSection />
-      <Footer />
+      <main>
+        <Header />
+        <Banner />
+        <AboutUs />
+        <ServicesFirst service={service} />
+        <ContactUs />
+        <MapSection />
+        <Footer />
+      </main>
       <footer className={styles.footer}></footer>
     </div>
   );

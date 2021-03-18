@@ -3,7 +3,7 @@ import styles from '../../styles/ServiceFirst.module.css';
 import Link from 'next/link';
 
 export default function ServicesFirst({ service }) {
-  console.log(service.service);
+  //console.log(service.service);
   if (!service.service.length) {
     return <Loader />;
   }
