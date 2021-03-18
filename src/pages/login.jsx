@@ -20,20 +20,18 @@ const Login = () => {
     name: '',
   });
   const [adminEmails, setAdminEmails] = useState(null);
+  const [loginError, setLoginError] = useState(false);
   const [admin, setAdmin] = useState(false);
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
   }
 
   useEffect(async () => {
-    let response = await fetch('http://localhost:2000/api/admin/getAllAdmins');
+    let response = await fetch(`${server}/admin/getAllAdmins`);
     response = await response.json();
     setAdminEmails(response.email);
   }, []);
-  console.log(adminEmails);
-
-  // localStorage.setItem('_increment', JSON.stringify(appData));
-  // }, []);
+  // console.log(adminEmails);
 
   const handleGoogleSignIn = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -43,17 +41,13 @@ const Login = () => {
       .then(async function (result) {
         const { displayName, email } = await result.user;
         const loggedInUser = { name: displayName, email };
-        //localStorage.setItem('data', loggedInUser);
         setUserData({
           ...loggedInUser,
           name: displayName,
           email: email,
         });
-        //localStorage.setItem('data', loggedInUser);
-        // window.store = loggedInUser;
-
-        console.log(loggedInUser);
-        console.log(userData);
+        //console.log(loggedInUser);
+        //console.log(userData);
         let adminEmail = adminEmails.filter(
           (data) => data.email == loggedInUser.email
         );
@@ -68,19 +62,26 @@ const Login = () => {
           setAdmin(true);
           router.push(dashboardSection);
         }
-
-        // if (typeof window !== 'undefined') {
-        //   localStorage.setItem(data, loggedInUser);
-        // }
       })
       .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-        console.log(errorCode, email, credential, errorMessage);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const emails = error.email;
+        const credential = error.credential;
+        // console.log(errorCode, email, credential, errorMessage);
+        // setLoginError(credential);
+        const errors = {
+          credential,
+          emails,
+          errorMessage,
+          errorCode,
+        };
+        if (errors) {
+          setLoginError(true);
+        }
       });
   };
+  console.log(loginError);
 
   return (
     <Container>
@@ -105,6 +106,11 @@ const Login = () => {
             <Button variant="outline-danger" onClick={handleGoogleSignIn}>
               Continue With google
             </Button>
+            {loginError ? (
+              <p className="text-danger mt-5">Login Error, please Try Again</p>
+            ) : (
+              ''
+            )}
           </div>
         </Col>
       </Row>
@@ -113,14 +119,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// export async function getServerSideProps() {
-//   const res = await fetch('');
-//   const getAdminEmail = await res.json();
-
-//   return {
-//     props: {
-//       getAdminEmail,
-//     },
-//   };
-// }
