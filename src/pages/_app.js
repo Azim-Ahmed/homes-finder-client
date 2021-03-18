@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <UserContext.Provider
-      value={{ appData, setAppData, loggedIn, setLoggedIn, admin, setAdmin }}
+      value={[appData, setAppData, loggedIn, setLoggedIn, admin, setAdmin]}
     >
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

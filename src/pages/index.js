@@ -13,7 +13,7 @@ import Loader from '../Components/Loader';
 import { UserContext } from './_app';
 
 export default function Home({ service }) {
-  const { appData, setAppData } = useContext(UserContext);
+  // const { appData, setAppData } = useContext(UserContext);
   const [backgorundAbout, setBackgroundAbout] = useState('PrimaryBackground');
   const navRef = useRef();
   navRef.current = backgorundAbout;
@@ -31,7 +31,7 @@ export default function Home({ service }) {
         <title>Vega Home</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-      <Header appData={appData} />
+      <Header />
       <Banner />
       <AboutUs />
       <ServicesFirst service={service} />
@@ -46,15 +46,16 @@ export default function Home({ service }) {
 export const getStaticProps = async (context) => {
   const res = await fetch('http://localhost:2000/api/services/getAllServices');
   const service = await res.json();
-  // if (!service) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // } else {
-  return {
-    props: {
-      service,
-    },
-    revalidate: 10,
-  };
+  if (!service.service) {
+    return {
+      notFound: true,
+    };
+  } else {
+    return {
+      props: {
+        service,
+      },
+      revalidate: 10,
+    };
+  }
 };

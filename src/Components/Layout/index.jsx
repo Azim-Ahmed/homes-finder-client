@@ -1,20 +1,22 @@
+import Head from 'next/head';
+import { useContext, useEffect } from 'react';
+// import { UserContext } from '../../pages/_app';
 import { Col, Container, Row } from 'react-bootstrap';
 import Header from '../Header';
 import Footer from '../Footer';
 import Link from 'next/link';
 import styles from '../../styles/layout.module.css';
-import { useContext, useEffect } from 'react';
 import { UserContext } from '../../pages/_app';
 
 const Layout = (props) => {
-  const {
+  const [
     appData,
     setAppData,
     loggedIn,
     setLoggedIn,
     admin,
     setAdmin,
-  } = useContext(UserContext);
+  ] = useContext(UserContext);
 
   useEffect(() => {
     const homeSection = '/login';
@@ -25,7 +27,8 @@ const Layout = (props) => {
 
   return (
     <>
-      <Header navColor={props.navColor} appData={appData} dashboard />
+      <Head></Head>
+      <Header navColor={props.navColor} dashboard />
       {props.dashboard ? (
         <Container fluid>
           <Row>

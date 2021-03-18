@@ -17,9 +17,9 @@ const Header = (props) => {
     setAdmin,
   } = useContext(UserContext);
   const handleSignOut = () => {
-    setAppData({});
+    setAppData(null);
     const homeSection = '/login';
-    if (loggedIn || admin) {
+    if (!loggedIn || !admin) {
       router.push(homeSection);
     }
   };
@@ -83,7 +83,7 @@ const Header = (props) => {
               <Link href="#contact">
                 <a className="nav-link">Contact Us</a>
               </Link>
-              {loggedIn || admin ? (
+              {admin ? (
                 <>
                   {' '}
                   <Link href="/dashboard/home">
@@ -147,7 +147,7 @@ const Header = (props) => {
               <Link href="#contact">
                 <a className="nav-link">Contact Us</a>
               </Link>
-              {props.appData.email ? (
+              {appData?.email ? (
                 <Link href="/dashboard/home">
                   <a className="nav-link">Dashboard</a>
                 </Link>
