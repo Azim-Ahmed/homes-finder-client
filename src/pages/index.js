@@ -46,16 +46,15 @@ export default function Home({ service }) {
 export const getStaticProps = async (context) => {
   const res = await fetch('http://localhost:2000/api/services/getAllServices');
   const service = await res.json();
-  if (!service) {
-    return {
-      notFound: true,
-    };
-  } else {
-    return {
-      props: {
-        service,
-      },
-      revalidate: 10,
-    };
-  }
+  // if (!service) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // } else {
+  return {
+    props: {
+      service,
+    },
+    revalidate: 10,
+  };
 };
