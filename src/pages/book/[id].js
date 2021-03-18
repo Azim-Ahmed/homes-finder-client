@@ -6,7 +6,7 @@ import styles from '../../styles/singleService.module.css';
 import Calendar from 'react-calendar';
 import Link from 'next/link';
 import Select from 'react-select';
-import { api } from '../../urlConfig';
+import { server } from '../../urlConfig';
 import { useForm } from 'react-hook-form';
 import 'react-calendar/dist/Calendar.css';
 
@@ -60,7 +60,7 @@ const SingleService = ({ serviceData }) => {
     if (!orderData.name && !orderData.email) {
       setNexty(<p className="text-danger">Please Fill the Data Correctly</p>);
     } else {
-      fetch(`${api}/order/create`, {
+      fetch(`${server}/order/create`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(orderData),
@@ -429,7 +429,7 @@ export default SingleService;
 //getStatic props Section
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `http://localhost:2000/api/services/getAllServicesbyParams/${params.id}`
+    `${server}/services/getAllServicesbyParams/${params.id}`
   );
   const serviceData = await res.json();
 
@@ -441,7 +441,7 @@ export async function getStaticProps({ params }) {
 }
 //getStatic paths Section
 export async function getStaticPaths() {
-  const res = await fetch('http://localhost:2000/api/services/getAllServices');
+  const res = await fetch(`${server}/services/getAllServices`);
   const services = await res.json();
   const paths = [];
   services.service.forEach((service) => paths.push(`/book/${service._id}`));

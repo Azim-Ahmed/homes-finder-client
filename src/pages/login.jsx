@@ -5,6 +5,7 @@ import Link from 'next/link';
 import styles from '../styles/login.module.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { server } from '../urlConfig';
 import firebaseConfig from '../firebase.config';
 import { useRouter } from 'next/router';
 import Image from 'next/image';

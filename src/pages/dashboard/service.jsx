@@ -4,7 +4,7 @@ import Layout from '../../Components/Layout';
 import { UserContext } from '../_app';
 import Modal from '../../Components/ReUseableUI/Modal';
 import Input from '../../Components/ReUseableUI/Input';
-import { api } from '../../urlConfig';
+import { server } from '../../urlConfig';
 import styles from '../../styles/dashboard.module.css';
 import Loader from '../../Components/Loader';
 const Service = (props) => {
@@ -27,7 +27,7 @@ const Service = (props) => {
   //
 
   useEffect(() => {
-    fetch(`${api}/services/getAllServices`)
+    fetch(`${server}/services/getAllServices`)
       .then((res) => res.json())
       .then((data) => setGetAllservices(data.service));
   }, [getAllServices]);
@@ -42,7 +42,7 @@ const Service = (props) => {
   const handleAddService = () => {
     const formData = { name, time, price, description, servicePicture };
     console.log(formData);
-    fetch(`${api}/service/create`, {
+    fetch(`${server}/service/create`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(formData),
@@ -231,7 +231,7 @@ const Service = (props) => {
 
   const updateServiceForm = () => {
     if (updatedData) {
-      fetch(`${api}/service/update/${serviceDetails._id}`, {
+      fetch(`${server}/service/update/${serviceDetails._id}`, {
         method: 'PATCH',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(updatedData),
@@ -242,7 +242,7 @@ const Service = (props) => {
         });
       setUpdatedServiceModal(false);
     } else {
-      fetch(`${api}/service/update/${serviceDetails._id}`, {
+      fetch(`${server}/service/update/${serviceDetails._id}`, {
         method: 'PATCH',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(serviceDetails),
@@ -325,7 +325,7 @@ const Service = (props) => {
   };
 
   const deleteService = (service) => {
-    fetch(`${api}/service/delete/${service._id}`, {
+    fetch(`${server}/service/delete/${service._id}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())

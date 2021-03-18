@@ -1,5 +1,6 @@
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Layout from '../Components/Layout';
+import { server } from '../urlConfig';
 import Loader from '../Components/Loader';
 import Link from 'next/link';
 import styles from '../styles/bookOnline.module.css';
@@ -68,7 +69,7 @@ const BookOnline = ({ service }) => {
 export default BookOnline;
 //getStatic props
 export const getStaticProps = async (context) => {
-  const res = await fetch('http://localhost:2000/api/services/getAllServices');
+  const res = await fetch(`${server}/services/getAllServices`);
   const service = await res.json();
 
   return {

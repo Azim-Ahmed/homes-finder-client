@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useContext, useEffect, useRef, useState } from 'react';
+import { server } from '../urlConfig';
 import AboutUs from '../Components/AboutUs';
 import Banner from '../Components/Banner';
 import ContactUs from '../Components/ContactUs';
@@ -44,7 +45,7 @@ export default function Home({ service }) {
 }
 
 export const getStaticProps = async (context) => {
-  const res = await fetch('http://localhost:2000/api/services/getAllServices');
+  const res = await fetch(`${server}/services/getAllServices`);
   const service = await res.json();
   if (!service.service) {
     return {

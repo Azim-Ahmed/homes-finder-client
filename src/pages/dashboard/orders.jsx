@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Col, Row, Table, Button } from 'react-bootstrap';
 import Layout from '../../Components/Layout';
-import { api } from '../../urlConfig';
+import { server } from '../../urlConfig';
 import Modal from '../../Components/ReUseableUI/Modal';
 import styles from '../../styles/dashboard.module.css';
 
@@ -15,7 +15,7 @@ const Orders = () => {
   //hook of React
 
   useEffect(() => {
-    fetch(`${api}/order/getAllOrders`)
+    fetch(`${server}/order/getAllOrders`)
       .then((res) => res.json())
       .then((data) => setGetAllOrders(data.order));
   }, [getAllOrders]);
@@ -32,7 +32,7 @@ const Orders = () => {
   //delete orders
 
   const deleteOrder = (order) => {
-    fetch(`${api}/order/delete/${order._id}`, {
+    fetch(`${server}/order/delete/${order._id}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())
