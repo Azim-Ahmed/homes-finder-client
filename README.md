@@ -8,7 +8,7 @@ then
 
 ##Server Link
 
-# [homes-FinderServer](https://github.com/Azim-Ahmed/homes-finder-server)
+# [homes-Finder-Server](https://github.com/Azim-Ahmed/homes-finder-server)
 
 ![homes-finder](https://i.ibb.co/1v34gq6/homes-finder-client-min-1-1-1.jpg
 )
