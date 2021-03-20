@@ -1,6 +1,6 @@
 import styles from '../../styles/AboutUs.module.css';
-import { useContext, useEffect, useRef, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import Image from 'next/image';
 
 const AboutUs = () => {
   return (
@@ -18,12 +18,13 @@ const AboutUs = () => {
             to ensure your satisfaction.
           </p>
         </Col>
-        <Col sm={12} xs={12} md={6}>
-          <div>
-            <img
-              className={styles.AboutImageContainer}
-              src="https://i.ibb.co/ThcJFdG/Getty-Images-1131001476.jpg"
+        <Col sm={12} xs={12} md={6} lg={6}>
+          <div className={styles.AboutImageContainer}>
+            <Image
+              src="/GettyImages-1131001476.jpg"
               alt="About us profile"
+              width={500}
+              height={500}
             />
           </div>
         </Col>
@@ -33,3 +34,5 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
+// "/Getty-Images-1131001476.jpg"
