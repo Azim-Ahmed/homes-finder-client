@@ -31,7 +31,7 @@ export default function ServicesFirst({ service }) {
                     md={{ span: 6, order: 1 }}
                   >
                     <Card
-                      className={`${styles.CardStylesForServices} p-lg-5 p-sm-3 d-block text-white`}
+                      className={`${styles.CardStylesForServices} p-lg-5 p-sm-4 p-xs-3 text-white`}
                     >
                       <Card.Title className="border-bottom pb-4" as="h3">
                         {services.name}

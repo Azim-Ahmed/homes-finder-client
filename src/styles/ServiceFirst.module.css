@@ -19,8 +19,29 @@
     padding: 0;
   }
 }
+.groupServiceOnResponsive {
+  margin-top: 2.3rem;
+}
+@media screen and (max-width: 562px) {
+  .CardStylesForServices {
+    margin: 0px;
+    padding: 1rem;
+  }
+  .groupServiceOnResponsive {
+    border: 2px solid rgb(197, 188, 188);
+    margin: 1rem 0.2rem;
+  }
+  .columnPaddingRemoveInResponsive {
+    padding: 0;
+  }
+}
 @media screen and (max-width: 992px) {
   .CardStylesForServices {
-    margin: -50px;
+    margin: 2.3rem -50px;
+  }
+}
+@media screen and (max-width: 778px) {
+  .CardStylesForServices {
+    margin: 0;
   }
 }
