@@ -5,7 +5,7 @@ import Image from 'next/image';
 const AboutUs = () => {
   return (
     <Container id="about">
-      <Row className="my-5 py-5 text-center">
+      <Row className="my-5 py-5 text-center align-items-center">
         <Col className="my-5 py-5" sm={12} xs={12} md={6}>
           <h1>About Our Company</h1>
           <p className={styles.AboutContentContainer}>
@@ -18,8 +18,8 @@ const AboutUs = () => {
             to ensure your satisfaction.
           </p>
         </Col>
-        <Col sm={12} xs={12} md={6} lg={6}>
-          <div className={styles.AboutImageContainer}>
+        <Col className="overflow-hidden" sm={12} xs={12} md={6} lg={6}>
+          <div>
             <Image
               src="/GettyImages-1131001476.jpg"
               alt="About us profile"

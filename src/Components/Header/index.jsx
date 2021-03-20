@@ -45,19 +45,13 @@ const Header = (props) => {
   return (
     <Container fluid>
       {props.dashboard ? (
-        <Navbar
-          fixed="top"
-          className={`p-3`}
-          bg="secondary"
-          variant="danger"
-          expand="lg"
-        >
+        <Navbar fixed="top" className={`p-3`} bg="secondary" expand="lg">
           <Link href="/">
             <a className="navbar-brand">
               <Image
                 src="/favicon.png"
                 width={180}
-                height={40}
+                height={50}
                 alt="logo image"
               />
             </a>
@@ -106,18 +100,11 @@ const Header = (props) => {
       ) : (
         <Navbar
           fixed="top"
-          className={` ${styles[navRef.current]} ${
-            props.navColor && styles.navBackground
-          }  py-3`}
+          className={` ${styles[navRef.current]} ${props.navColor}  py-3`}
           expand="lg"
         >
-          <Scrollspy
-            items={['home', 'about', 'Services', 'contact']}
-            currentClassName="active"
-          ></Scrollspy>
           <Link href="/">
             <a className="navbar-brand">
-              {' '}
               <Image
                 src="/favicon.png"
                 width={180}
@@ -126,6 +113,11 @@ const Header = (props) => {
               />
             </a>
           </Link>
+          <Scrollspy
+            items={['home', 'about', 'Services', 'contact']}
+            currentClassName="active"
+          ></Scrollspy>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">

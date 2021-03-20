@@ -1,11 +1,22 @@
-.Form_Button {
-  background: #120f13;
-  color: black;
-  font-weight: 300;
-  border: none;
-  border-radius: 0px 0px;
+.contactUsSectionMargin {
+  margin: 10rem auto;
 }
-.Form_Button:hover {
-  background-color: #dfd2d2;
-  color: rgb(255, 253, 253);
+
+.Form_Button {
+  background: rgb(161, 153, 153);
+  color: rgb(41, 37, 37);
+  border: 2px solid #beb5b5;
+  padding: 12px 25px;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  outline: none;
+  font-weight: 600;
+}
+.Form_Button:hover,
+.Form_Button:focus,
+.Form_Button:active {
+  background: #c2bcbc !important;
+  color: black;
+  border: 2px solid #e7e7e7 !important;
+  box-shadow: 0px 0px 4px rgb(146, 142, 142);
 }

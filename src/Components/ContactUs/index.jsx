@@ -1,9 +1,12 @@
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import styles from '../../styles/ContactUs.module.css';
 const ContactUs = () => {
+  const handleSubmitData = (e) => {
+    e.preventDefault();
+  };
   return (
     <Container id="contact">
-      <Row className="my-5">
+      <Row className={styles.contactUsSectionMargin}>
         <Col
           md={{ span: 5 }}
           className="d-flex justify-content-center align-items-center"
@@ -51,8 +54,8 @@ const ContactUs = () => {
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label>State</Form.Label>
                 <Form.Control as="select" defaultValue="Choose...">
-                  <option>Choose...</option>
-                  <option>...</option>
+                  <option>choose</option>
+                  <option>....</option>
                 </Form.Control>
               </Form.Group>
 
@@ -66,6 +69,7 @@ const ContactUs = () => {
               size="lg"
               block
               type="submit"
+              onClick={handleSubmitData}
             >
               Submit
             </Button>

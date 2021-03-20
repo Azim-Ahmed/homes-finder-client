@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function ServicesFirst({ service }) {
   //console.log(service.service);
   if (!service.service.length) {
-    return <Loader />;
+    <Loader />;
   }
   return (
     <Container id="Services">
@@ -13,26 +13,39 @@ export default function ServicesFirst({ service }) {
         {service.service.length > 0
           ? service.service.map((services, index) => (
               <Col key={index} md={12}>
-                <Row className="my-4 text-justify">
-                  <Col md={{ span: 6 }}>
+                <Row
+                  className={`${styles.groupServiceOnResponsive} my-4 text-justify align-items-center`}
+                >
+                  <Col
+                    className={styles.columnPaddingRemoveInResponsive}
+                    md={{ span: 6 }}
+                  >
                     <img
                       className={styles.imagesSize}
                       src={services.servicePicture}
                       alt={`Service of ${services.name}`}
                     />
                   </Col>
-                  <Col md={{ span: 6, order: 1 }}>
+                  <Col
+                    className={styles.columnPaddingRemoveInResponsive}
+                    md={{ span: 6, order: 1 }}
+                  >
                     <Card
-                      className={`${styles.CardStylesForServices} bg-dark p-5 mt-5 d-block text-white`}
+                      className={`${styles.CardStylesForServices} p-lg-5 p-sm-3 d-block text-white`}
                     >
-                      <Card.Title as="h3">{services.name}</Card.Title>
+                      <Card.Title className="border-bottom pb-4" as="h3">
+                        {services.name}
+                      </Card.Title>
                       <Card.Text as="p">{services.description}</Card.Text>
-                      <Card.Text>
-                        Service Hour: &nbsp; {services.time}h
-                      </Card.Text>
+                      <Card.Text className="py-2">{services.time}h</Card.Text>
                       <Link href={`/book/${services._id}`}>
                         <a>
-                          <Button variant="outline-info">Book Now</Button>
+                          <Button
+                            className="rounded-pill border-white"
+                            variant="outline-secondary"
+                          >
+                            Book Free Consultation
+                          </Button>
                         </a>
                       </Link>
                     </Card>

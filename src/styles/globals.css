@@ -71,3 +71,7 @@ a:hover {
 li {
   list-style: none;
 }
+
+.navbar-brand {
+  margin: 0px 0px;
+}
