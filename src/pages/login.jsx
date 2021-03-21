@@ -95,6 +95,7 @@ const Login = () => {
                 width={300}
                 height={100}
                 alt="logo image"
+                quality={100}
               />
             </a>
           </Link>
