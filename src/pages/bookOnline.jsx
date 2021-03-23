@@ -4,6 +4,7 @@ import { server } from '../urlConfig';
 import Loader from '../Components/Loader';
 import Link from 'next/link';
 import styles from '../styles/bookOnline.module.scss';
+import SEO from '../Components/SEO';
 
 const BookOnline = ({ service }) => {
   const servicesData = service.service;
@@ -12,6 +13,12 @@ const BookOnline = ({ service }) => {
   }
   return (
     <Layout navColor={true} dashboard={false}>
+      <SEO
+        title="Book Online | | Homes Finder"
+        name="description"
+        content="Click one of service to procceed."
+      />
+
       <Container>
         <Row className="mt-5">
           <Col className="mt-5">

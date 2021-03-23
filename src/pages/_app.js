@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.scss';
-import Head from 'next/head';
+import SEO from '../Components/SEO';
 
 export const UserContext = createContext();
 
@@ -15,13 +15,10 @@ function MyApp({ Component, pageProps }) {
     <UserContext.Provider
       value={[appData, setAppData, loggedIn, setLoggedIn, admin, setAdmin]}
     >
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="Description"
-          content="A homes-finder App where people can purchase and get some advantages with low or free of cost."
-        />
-      </Head>
+      <SEO
+        name="description"
+        content="A homes-finder App where people can purchase and get some advantages with low or free of cost."
+      />
       <Component {...pageProps} />
     </UserContext.Provider>
   );

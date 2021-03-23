@@ -12,6 +12,7 @@ import styles from '../styles/Home.module.scss';
 import Footer from '../Components/Footer';
 import Loader from '../Components/Loader';
 import { UserContext } from './_app';
+import SEO from '../Components/SEO';
 
 export default function Home({ service }) {
   // const { appData, setAppData } = useContext(UserContext);
@@ -28,10 +29,13 @@ export default function Home({ service }) {
 
   return (
     <div className={styles[navRef.current]}>
-      <Head>
-        <title>Vega Home</title>
+      <SEO
+        title="Home | | Homes Finder"
+        name="description"
+        content="A homes-finder App where people can purchase and get some advantages with low or free of cost."
+      >
         <link rel="icon" href="/logo.png" />
-      </Head>
+      </SEO>
       <main>
         <Header />
         <Banner />

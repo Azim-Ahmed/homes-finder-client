@@ -104,7 +104,7 @@ const Login = () => {
               Continue With google
             </Button>
             {loginError ? (
-              <p className="text-danger mt-5">Login Error, please Try Again</p>
+              <p className="text-danger mt-5">Access Denied/Restricted</p>
             ) : (
               ''
             )}
