@@ -6,7 +6,7 @@ export const getAllOrder = () => {
       type: orderConstants.GET_ALL_ORDER_REQUEST,
     });
     const res = await axios.get(`/category/getcategory`);
-    console.log(res);
+    // console.log(res);
     if (res.status === 200) {
       const { order } = res.data;
       dispatch({

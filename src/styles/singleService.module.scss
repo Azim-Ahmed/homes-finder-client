@@ -18,15 +18,14 @@
   font-size: 16px;
   transition-duration: 0.4s;
   outline: none;
-}
-
-.submitButtonStyle:hover,
-.submitButtonStyle:focus,
-.submitButtonStyle:active {
-  background: #e7e7e7 !important;
-  color: black;
-  border: 2px solid #e7e7e7;
-  box-shadow: 0px 0px 4px rgb(146, 142, 142);
+  &:hover,
+  &:focus,
+  &:active {
+    background: #e7e7e7 !important;
+    color: black;
+    border: 2px solid #e7e7e7;
+    box-shadow: 0px 0px 4px rgb(146, 142, 142);
+  }
 }
 .bgText {
   background-color: rgb(0, 0, 0); /* Fallback color */

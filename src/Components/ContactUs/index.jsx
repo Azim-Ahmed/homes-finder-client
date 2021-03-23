@@ -1,5 +1,5 @@
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
-import styles from '../../styles/ContactUs.module.css';
+import styles from '../../styles/ContactUs.module.scss';
 const ContactUs = () => {
   const handleSubmitData = (e) => {
     e.preventDefault();

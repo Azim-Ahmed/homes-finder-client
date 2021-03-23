@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { UserContext } from './_app';
 import Link from 'next/link';
-import styles from '../styles/login.module.css';
+import styles from '../styles/login.module.scss';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { server } from '../urlConfig';
@@ -49,7 +49,7 @@ const Login = () => {
         let adminEmail = adminEmails.filter(
           (data) => data.email == loggedInUser.email
         );
-        console.log(adminEmail);
+        // console.log(adminEmail);
 
         if (!adminEmail[0].email) {
           setAdmin(false);

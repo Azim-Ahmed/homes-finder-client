@@ -3,7 +3,7 @@ import { Col, Row, Table, Button } from 'react-bootstrap';
 import Layout from '../../Components/Layout';
 import { server } from '../../urlConfig';
 import Modal from '../../Components/ReUseableUI/Modal';
-import styles from '../../styles/dashboard.module.css';
+import styles from '../../styles/dashboard.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import Layout from '../../Components/Layout';
-import styles from '../../styles/singleService.module.css';
+import styles from '../../styles/singleService.module.scss';
 import Calendar from 'react-calendar';
 import Link from 'next/link';
 import Select from 'react-select';
@@ -268,7 +268,7 @@ const SingleService = ({ serviceData }) => {
 
           <Form.Group controlId="message">
             <Form.Control
-              type="text"
+              as="textarea"
               name="message"
               placeholder="Add your Message"
               ref={register({ required: false })}

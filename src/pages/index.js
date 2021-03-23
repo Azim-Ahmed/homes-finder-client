@@ -8,7 +8,7 @@ import Header from '../Components/Header';
 import Layout from '../Components/Layout';
 import ServicesFirst from '../Components/ServicesFirst';
 import MapSection from '../Components/MapSection';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 import Footer from '../Components/Footer';
 import Loader from '../Components/Loader';
 import { UserContext } from './_app';

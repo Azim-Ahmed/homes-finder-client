@@ -5,7 +5,7 @@ import { UserContext } from '../_app';
 import Modal from '../../Components/ReUseableUI/Modal';
 import Input from '../../Components/ReUseableUI/Input';
 import { server } from '../../urlConfig';
-import styles from '../../styles/dashboard.module.css';
+import styles from '../../styles/dashboard.module.scss';
 import Loader from '../../Components/Loader';
 const Service = (props) => {
   const { appData, setAppData } = useContext(UserContext);

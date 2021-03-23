@@ -3,7 +3,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import Link from 'next/link';
 import Image from 'next/image';
 import Scrollspy from 'react-scrollspy';
-import styles from '../../styles/header.module.css';
+import styles from '../../styles/header.module.scss';
 import { UserContext } from '../../pages/_app';
 import { useRouter } from 'next/router';
 
@@ -57,7 +57,7 @@ const Header = (props) => {
             </a>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse className="text-center" id="basic-navbar-nav">
             <Nav className="ml-auto">
               <Link href="/">
                 <a className="nav-link">Home</a>
@@ -119,7 +119,7 @@ const Header = (props) => {
           ></Scrollspy>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse className="text-center" id="basic-navbar-nav">
             <Nav className="ml-auto">
               <Link href="/#home">
                 <a className="nav-link">Home</a>

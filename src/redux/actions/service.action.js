@@ -7,7 +7,7 @@ export const getAllServices = () => {
       type: serviceConstants.GET_ALL_SERVICE_REQUEST,
     });
     const res = await axios.get(`/services/getAllServices`);
-    console.log(res);
+    //console.log(res);
     if (res.status === 200) {
       dispatch({
         type: serviceConstants.GET_ALL_SERVICE_SUCCESS,

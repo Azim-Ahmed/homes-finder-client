@@ -1,4 +1,4 @@
-import styles from '../../styles/AboutUs.module.css';
+import styles from '../../styles/AboutUs.module.scss';
 import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'next/image';
 

@@ -1,9 +1,8 @@
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import styles from '../../styles/ServiceFirst.module.css';
+import styles from '../../styles/ServiceFirst.module.scss';
 import Link from 'next/link';
 
 export default function ServicesFirst({ service }) {
-  //console.log(service.service);
   if (!service.service.length) {
     <Loader />;
   }

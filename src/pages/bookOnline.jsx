@@ -3,7 +3,7 @@ import Layout from '../Components/Layout';
 import { server } from '../urlConfig';
 import Loader from '../Components/Loader';
 import Link from 'next/link';
-import styles from '../styles/bookOnline.module.css';
+import styles from '../styles/bookOnline.module.scss';
 
 const BookOnline = ({ service }) => {
   const servicesData = service.service;

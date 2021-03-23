@@ -5,7 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import Header from '../Header';
 import Footer from '../Footer';
 import Link from 'next/link';
-import styles from '../../styles/layout.module.css';
+import styles from '../../styles/layout.module.scss';
 import { UserContext } from '../../pages/_app';
 
 const Layout = (props) => {
